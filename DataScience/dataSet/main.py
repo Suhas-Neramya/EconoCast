@@ -1,17 +1,37 @@
 from bs4 import BeautifulSoup
 import requests
+import string
+import csv
+from tqdm import tqdm
 
-url = 'https://www.hellenicshippingnews.com/category/oil-energy/oil-companies-news/'
-page = requests.get(url)
-print(page)
+fields = ['News', 'Date']
 
-soup = BeautifulSoup(page.content,'html.parser')
-newsList = soup.find_all('article', class_='item-list')
 
-for news in newsList:
-    headLine = news.find('h2',class_='post-title').text
-    date = news.find('span',class_='tie-date').text
+def getNews():
+    headLine = news.find('h2', class_='post-title').text.lower().translate(
+        str.maketrans("", "", string.punctuation))
+    date = news.find('span', class_='tie-date').text
 
-    print(headLine)
-    print(date)
-    print()
+    return [headLine, date]
+
+
+def createURL(pageNumber):
+    return 'https://www.hellenicshippingnews.com/category/oil-energy/oil-companies-news/page/' + pageNumber + '/'
+
+
+with open('dataset.csv', 'w', newline='') as csvFile:
+    csvWriter = csv.writer(csvFile)
+    csvWriter.writerow(fields)
+
+    for i in tqdm(range(2, 1354)):
+        number = str(i);
+
+        page = requests.get(createURL(number))
+
+        soup = BeautifulSoup(page.content, 'html.parser')
+        newsList = soup.find_all('article', class_='item-list')
+
+        for news in newsList:
+            csvWriter.writerow(getNews())
+
+        pass
