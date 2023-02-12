@@ -8,8 +8,7 @@ fields = ['News', 'Date']
 
 
 def getNews():
-    headLine = news.find('h2', class_='post-title').text.lower().translate(
-        str.maketrans("", "", string.punctuation))
+    headLine = news.find('h2', class_='post-title')
     date = news.find('span', class_='tie-date').text
 
     return [headLine, date]
