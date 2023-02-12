@@ -17,7 +17,7 @@ class LoginPageLeftSide extends StatelessWidget {
 
           children: [
             const Text(
-              "Login",
+              "Login Section",
               textAlign: TextAlign.justify,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
             ),
