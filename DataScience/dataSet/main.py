@@ -19,7 +19,7 @@ def createURL(pageNumber):
     return 'https://www.hellenicshippingnews.com/category/oil-energy/oil-companies-news/page/' + pageNumber + '/'
 
 
-with open('dataset.csv', 'w', newline='') as csvFile:
+with open('dataset.csv', 'w',encoding='utf-8', newline='') as csvFile:
     csvWriter = csv.writer(csvFile)
     csvWriter.writerow(fields)
 
