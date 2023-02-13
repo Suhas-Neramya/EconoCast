@@ -8,7 +8,7 @@ fields = ['News', 'Date']
 
 
 def getNews():
-    headLine = news.find('h2', class_='post-title')
+    headLine = news.find('h2', class_='post-title').text
     date = news.find('span', class_='tie-date').text
 
     return [headLine, date]
