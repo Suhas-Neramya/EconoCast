@@ -20,7 +20,7 @@ public class DataSet {
                 String[] values = line.split(",");
 
                 date.add(values[0]);
-                news.add(values[1]);
+                news.add(values[1].toLowerCase().replaceAll("\\p{Punct}", ""));
             }
 
         } catch (FileNotFoundException e) {
