@@ -21,7 +21,7 @@ with open('dataset.csv', 'w',encoding='utf-8', newline='') as csvFile:
     csvWriter = csv.writer(csvFile)
     csvWriter.writerow(fields)
 
-    for i in tqdm(range(2, 11)):
+    for i in tqdm(range(40, 51)):
         number = str(i);
 
         page = requests.get(createURL(number))
