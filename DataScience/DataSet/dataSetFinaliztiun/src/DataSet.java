@@ -10,14 +10,17 @@ public class DataSet {
     ArrayList<String> news = new ArrayList<>();
 
     void call(){
-        String fileName = "dataset.csv";
+        String fileName = "finalizedDataSet2.csv";
         String line = "";
 
         try{
             BufferedReader br = new BufferedReader(new FileReader(fileName));
 
+            int i=0;
+
             while((line = br.readLine()) != null){
                 String[] values = line.split(",");
+                System.out.println(i++);
 
                 date.add(values[0]);
                 news.add(values[1].toLowerCase().replaceAll("\\p{Punct}", ""));

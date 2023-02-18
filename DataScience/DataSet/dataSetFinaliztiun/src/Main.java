@@ -15,7 +15,7 @@ public class Main {
 
 
 
-        FileWriter writer = new FileWriter("finalizeDataSet.csv");
+        FileWriter writer = new FileWriter("dataset2.csv");
         writer.append("Date");
         writer.append(",");
         writer.append("News");
