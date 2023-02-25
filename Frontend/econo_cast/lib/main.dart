@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NoteVia',
+      title: 'EconoCast2',
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
