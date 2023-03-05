@@ -27,7 +27,7 @@ class LoginButton extends StatelessWidget {
           side: MaterialStateProperty.all(
             BorderSide(
               color: loginButtonStroke,
-              width: 2.0,
+              width: 0.5,
             ),
           ),
           shape: MaterialStateProperty.all(

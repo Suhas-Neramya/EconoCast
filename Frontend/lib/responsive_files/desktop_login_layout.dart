@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:econo_cast/constants/constants.dart';
+import 'package:econo_cast/responsive_files/desktop_main_layout.dart';
 import 'package:flutter/material.dart';
 import '../styles/colors.dart';
 
@@ -64,7 +65,7 @@ class DesktopLoginLayout extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 40.0,
+                        height: 50.0,
                       ),
 
                       //---------------------1st button-----------------------
@@ -88,7 +89,12 @@ class DesktopLoginLayout extends StatelessWidget {
                       LoginButton(
                           iconPath: 'assets/login-icon.png',
                           textInButtons: Text('Login as a Guest'),
-                          onPressed: () {}),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) {
+                              return const DesktopMainPage();
+                            }));
+                          }),
                     ],
                   ),
                 ),
