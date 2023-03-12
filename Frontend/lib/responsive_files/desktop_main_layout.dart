@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:econo_cast/styles/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: mainPageBg,
       appBar: AppBar(
         backgroundColor: mainPageBg,
         title: Row(
@@ -50,6 +53,177 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                 icon: Icon(Icons.person_rounded)),
           ],
         ),
+      ),
+
+      //--------------------------------------------------------------------------
+      //-----------------------body--------------------------------------------
+      body: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          // width: 300,
+                          // height: 200,
+                          padding: EdgeInsets.all(16.0),
+                          child: Expanded(
+                            child: Card(
+                              color: mainPageTwoContainers,
+                              elevation: 4.0,
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    //leading: Icon(Icons.person),
+                                    title: Text(
+                                        'Declared Market Price In Dollers',
+                                        style: TextStyle(color: Colors.white)),
+                                    //subtitle: Text('john.doe@example.com'),
+                                    subtitle: Text(
+                                      '18% of products are sold',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    trailing: Chip(
+                                        label: Text(
+                                      '4,500',
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      Expanded(
+                        child: Container(
+                          // width: 300,
+                          // height: 200,
+                          padding: EdgeInsets.all(16.0),
+                          child: Expanded(
+                            child: Card(
+                              color: mainPageTwoContainers,
+                              elevation: 4.0,
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    //leading: Icon(Icons.person),
+                                    title: Text(
+                                        'Declared Market Price In Dollers',
+                                        style: TextStyle(color: Colors.white)),
+                                    //subtitle: Text('john.doe@example.com'),
+                                    subtitle: Text(
+                                      '18% of products are sold',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    trailing: Chip(
+                                        label: Text(
+                                      '4,500',
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+
+                //---------------------------------graph----------------------------
+                Expanded(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          //width: 800,
+                          padding: EdgeInsets.all(16.0),
+                          child: Expanded(
+                            child: Card(
+                              color: mainPageTwoContainers,
+                              elevation: 4.0,
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    //leading: Icon(Icons.person),
+                                    title: Text(
+                                        'Declared Market Price In Dollers',
+                                        style: TextStyle(color: Colors.white)),
+                                    //subtitle: Text('john.doe@example.com'),
+                                    subtitle: Text(
+                                      '18% of products are sold',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    trailing: Chip(
+                                        label: Text(
+                                      '4,500',
+                                      style: TextStyle(color: Colors.white),
+                                    )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+
+          //-----------------------------news-----------------------------------
+          Expanded(
+            flex: 1,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    // width: 400,
+                    // height: 200,
+                    padding: EdgeInsets.all(16.0),
+                    child: Expanded(
+                      child: Card(
+                        color: mainPageTwoContainers,
+                        elevation: 4.0,
+                        child: Column(
+                          children: <Widget>[
+                            ListTile(
+                              //leading: Icon(Icons.person),
+                              title: Text('Declared Market Price In Dollers',
+                                  style: TextStyle(color: Colors.white)),
+                              //subtitle: Text('john.doe@example.com'),
+                              subtitle: Text(
+                                '18% of products are sold',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              trailing: Chip(
+                                  label: Text(
+                                '4,500',
+                                style: TextStyle(color: Colors.white),
+                              )),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
