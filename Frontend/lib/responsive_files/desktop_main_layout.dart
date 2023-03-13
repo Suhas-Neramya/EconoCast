@@ -3,6 +3,10 @@ import 'dart:html';
 import 'package:econo_cast/styles/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../constants/dropdown_button.dart';
+
+const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+
 class DesktopMainPage extends StatefulWidget {
   const DesktopMainPage({super.key});
 
@@ -68,30 +72,68 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                     children: [
                       Expanded(
                         child: Container(
+                          // decoration: BoxDecoration(
+                          //     //color: constants.purpleDark,
+                          //     borderRadius:
+                          //         BorderRadius.all(Radius.circular(50))),
                           // width: 300,
                           // height: 200,
                           padding: EdgeInsets.all(16.0),
                           child: Expanded(
                             child: Card(
+                              //margin: EdgeInsets.all(30),
                               color: mainPageTwoContainers,
                               elevation: 4.0,
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                //crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   ListTile(
-                                    //leading: Icon(Icons.person),
-                                    title: Text(
-                                        'Declared Market Price In Dollers',
-                                        style: TextStyle(color: Colors.white)),
-                                    //subtitle: Text('john.doe@example.com'),
-                                    subtitle: Text(
-                                      '18% of products are sold',
-                                      style: TextStyle(color: Colors.white),
+                                    title: Center(
+                                      child: Text(
+                                          'Declared Market Price In Dollers',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          )),
                                     ),
-                                    trailing: Chip(
-                                        label: Text(
-                                      '4,500',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
+
+                                    // subtitle: Container(
+                                    //     color: Colors.white,
+                                    //     child: DropdownButtonExample()),
+
+                                    // trailing: Text(
+                                    //   '18% ',
+                                    //   style: TextStyle(color: Colors.white),
+                                    // ),
+                                    // trailing: Chip(
+                                    //     label: Text(
+                                    //   '4,500',
+                                    //   style: TextStyle(color: Colors.white),
+                                    // )),
+                                  ),
+                                  SizedBox(height: 20),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          DropdownButtonExample(),
+                                        ],
+                                      ),
+                                      SizedBox(width: 10),
+                                      Column(
+                                        children: [
+                                          Container(
+                                              child: Text(
+                                            '80.00',
+                                            style: TextStyle(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white),
+                                          )),
+                                        ],
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -100,7 +142,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                         ),
                       ),
                       SizedBox(
-                        width: 2,
+                        width: 10,
                       ),
                       Expanded(
                         child: Container(
