@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
+import 'mobile_loginpg.dart';
+
 void main() => runApp(const MobileMainPage());
 
 class MobileMainPage extends StatelessWidget {
@@ -173,7 +175,11 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => { Navigator.of(context).push(MaterialPageRoute(
+             builder: (BuildContext context) {
+              return const MobileLoginLayout();
+              },
+            ))},
           ),
         ],
       ),
