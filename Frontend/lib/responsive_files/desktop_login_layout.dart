@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:econo_cast/constants/constants.dart';
+import 'package:econo_cast/responsive_files/desktop_main_layout.dart';
 import 'package:flutter/material.dart';
+import '../styles/colors.dart';
 
 class DesktopLoginLayout extends StatelessWidget {
   const DesktopLoginLayout({super.key});
@@ -55,28 +57,44 @@ class DesktopLoginLayout extends StatelessWidget {
                         height: 60.0,
                       ),
                       Text(
-                        'Login',
+                        'Sign In',
                         style: TextStyle(
                           fontSize: 24.0,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(68, 41, 10, 1),
+                          color: signInTextInContainer,
                         ),
                       ),
                       SizedBox(
-                        height: 40.0,
+                        height: 50.0,
                       ),
 
                       //---------------------1st button-----------------------
                       // SizedBox(height: 20),
-                      buttonStyle,
+                      LoginButton(
+                          iconPath: 'assets/google-icon.png',
+                          textInButtons: Text('Login with Google'),
+                          onPressed: () {}),
+
                       SizedBox(height: 20),
 
                       //---------------------2st button-----------------------
-                      buttonStyle,
+                      LoginButton(
+                          iconPath: 'assets/fb-icon.png',
+                          textInButtons: Text('Login with Facebook'),
+                          onPressed: () {}),
+
                       SizedBox(height: 20),
 
                       //---------------------3rd button-----------------------
-                      buttonStyle,
+                      LoginButton(
+                          iconPath: 'assets/login-icon.png',
+                          textInButtons: Text('Login as a Guest'),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) {
+                              return const DesktopMainPage();
+                            }));
+                          }),
                     ],
                   ),
                 ),
