@@ -88,7 +88,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 //crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  ListTile(
+                                  const ListTile(
                                     title: Center(
                                       child: Text(
                                           'Declared Market Price In Dollers',
@@ -116,7 +116,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Column(
-                                        children: [
+                                        children:  [
                                           DropdownButtonExample(),
                                         ],
                                       ),
@@ -154,7 +154,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               color: mainPageTwoContainers,
                               elevation: 4.0,
                               child: Column(
-                                children: <Widget>[
+                                children: const <Widget>[
                                   ListTile(
                                     //leading: Icon(Icons.person),
                                     title: Text(
@@ -195,7 +195,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               color: mainPageTwoContainers,
                               elevation: 4.0,
                               child: Column(
-                                children: <Widget>[
+                                children: const <Widget>[
                                   ListTile(
                                     //leading: Icon(Icons.person),
                                     title: Text(
@@ -240,7 +240,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                         color: mainPageTwoContainers,
                         elevation: 4.0,
                         child: Column(
-                          children: <Widget>[
+                          children: const <Widget>[
                             ListTile(
                               //leading: Icon(Icons.person),
                               title: Text('Declared Market Price In Dollers',
