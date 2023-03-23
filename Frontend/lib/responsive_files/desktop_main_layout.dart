@@ -66,7 +66,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
       ),
 
       /*
-       * body 
+       * --------------------------------body------------------------------------------
        */
       body: Row(
         children: [
@@ -144,21 +144,29 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               elevation: 4.0,
                               child: Column(
                                 children: <Widget>[
-                                  ListTile(
-                                    //leading: Icon(Icons.person),
-                                    title: Text(
-                                        'Declared Market Price In Dollers',
-                                        style: TextStyle(color: Colors.white)),
-                                    //subtitle: Text('john.doe@example.com'),
-                                    subtitle: Text(
-                                      '18% of products are sold',
-                                      style: TextStyle(color: Colors.white),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 40),
+                                    child: ListTile(
+                                      //leading: Icon(Icons.person),
+                                      title: Center(
+                                        //padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Predicted crude oil price change',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                      //subtitle: Text('john.doe@example.com'),
+
+                                      subtitle: Center(
+                                        child: Text(
+                                          'Increased',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 40,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    trailing: Chip(
-                                        label: Text(
-                                      '4,500',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
                                   ),
                                 ],
                               ),
