@@ -20,7 +20,9 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     return Scaffold(
       backgroundColor: mainPageBg,
 
-      // the app bar
+      /**
+       * app bar
+       */
       appBar: AppBar(
         backgroundColor: mainPageBg,
         title: Row(
@@ -38,10 +40,12 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
             Text(
               'Crude Oil Price Forecast',
               style: TextStyle(
-                color: darkBrownText, // Change this color to the desired color
+                color: darkBrownText,
               ),
             ),
             Spacer(),
+
+            //-----------------------------------icons in the app bar--------------------------------------
             IconButton(
                 color: mainPageIcons,
                 iconSize: 30,
@@ -61,12 +65,14 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
         ),
       ),
 
-      //--------------------------------------------------------------------------
-      //-----------------------body--------------------------------------------
+      /*
+       * body 
+       */
       body: Row(
         children: [
+          //-------------------------------left column-------------------------------
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Column(
               children: [
                 Expanded(
@@ -227,9 +233,10 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
             ),
           ),
 
-          //-----------------------------news-----------------------------------
+          //-----------------------------right column-----------------------------------
+          //------------------------------news container--------------------------------
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Column(
               children: [
                 Expanded(
