@@ -70,31 +70,26 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
        */
       body: Row(
         children: [
-          //-------------------------------left column-------------------------------
           Expanded(
             flex: 3,
+
+            //-------------------------------left column-------------------------------
             child: Column(
               children: [
+                //-------------------------------upper row------------------------------
                 Expanded(
+                  flex: 1,
                   child: Row(
                     children: [
                       Expanded(
                         child: Container(
-                          // decoration: BoxDecoration(
-                          //     //color: constants.purpleDark,
-                          //     borderRadius:
-                          //         BorderRadius.all(Radius.circular(50))),
-                          // width: 300,
-                          // height: 200,
                           padding: EdgeInsets.all(16.0),
                           child: Expanded(
                             child: Card(
-                              //margin: EdgeInsets.all(30),
                               color: mainPageTwoContainers,
                               elevation: 4.0,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                //crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   ListTile(
                                     title: Center(
@@ -104,20 +99,6 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                             color: Colors.white,
                                           )),
                                     ),
-
-                                    // subtitle: Container(
-                                    //     color: Colors.white,
-                                    //     child: DropdownButtonExample()),
-
-                                    // trailing: Text(
-                                    //   '18% ',
-                                    //   style: TextStyle(color: Colors.white),
-                                    // ),
-                                    // trailing: Chip(
-                                    //     label: Text(
-                                    //   '4,500',
-                                    //   style: TextStyle(color: Colors.white),
-                                    // )),
                                   ),
                                   SizedBox(height: 20),
                                   Row(
@@ -190,11 +171,14 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                 ),
                 SizedBox(height: 10),
 
-                //---------------------------------graph----------------------------
+                //---------------------------------below row----------------------------
+                //-----------------------------------graph--------------------------------
                 Expanded(
+                  flex: 2,
                   child: Row(
                     children: [
                       Expanded(
+                        //flex: 2,
                         child: Container(
                           //width: 800,
                           padding: EdgeInsets.all(16.0),
