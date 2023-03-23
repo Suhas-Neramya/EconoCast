@@ -19,6 +19,8 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: mainPageBg,
+
+      // the app bar
       appBar: AppBar(
         backgroundColor: mainPageBg,
         title: Row(
