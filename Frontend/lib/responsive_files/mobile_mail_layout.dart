@@ -24,41 +24,125 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-        drawer: const NavDrawer(),
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Image.asset(
-            'assets/logo.png',
-            width: 300,
-            height: 70,
-            alignment: Alignment.topLeft,
-          ),
-          foregroundColor: Colors.brown,
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.account_circle_rounded),
-              color: Colors.brown,
-              tooltip: 'Show contact',
-              onPressed: () {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(const SnackBar(content: Text('contact')));
-              },
-            ),
-          ],
-        ),
-        body: SafeArea(
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                    "assets/background.jpg"), // replace with your own image path
-                fit:
-                    BoxFit.cover, // set the image to cover the entire container
-              ),
-            ),
-          ),
-        ));
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          if (snapshot.data == null) {
+            return Scaffold(
+                drawer: const NavDrawer(),
+                appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  title: Image.asset(
+                    'assets/logo.png',
+                    width: 300,
+                    height: 70,
+                    alignment: Alignment.topLeft,
+                  ),
+                  foregroundColor: Colors.brown,
+                  actions: <Widget>[
+                    IconButton(
+                      icon: const Icon(Icons.account_circle_rounded),
+                      color: Colors.brown,
+                      tooltip: 'Show contact',
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('contact')));
+                      },
+                    ),
+                  ],
+                ),
+                body: SafeArea(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                            "assets/background.jpg"), // replace with your own image path
+                        fit: BoxFit
+                            .cover, // set the image to cover the entire container
+                      ),
+                    ),
+                  ),
+                ));
+          } else {
+            return Scaffold(
+                drawer: const NavDrawer(),
+                appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  title: Image.asset(
+                    'assets/logo.png',
+                    width: 300,
+                    height: 70,
+                    alignment: Alignment.topLeft,
+                  ),
+                  foregroundColor: Colors.brown,
+                  actions: <Widget>[
+                    IconButton(
+                      icon: Image.network(FirebaseAuth
+                          .instance.currentUser!.photoURL
+                          .toString()),
+                      color: Colors.brown,
+                      tooltip: 'Show contact',
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(FirebaseAuth
+                                .instance.currentUser!.displayName!)));
+                      },
+                    ),
+                  ],
+                ),
+                body: SafeArea(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                            "assets/background.jpg"), // replace with your own image path
+                        fit: BoxFit
+                            .cover, // set the image to cover the entire container
+                      ),
+                    ),
+                  ),
+                ));
+          }
+        }
+        return Center(child: CircularProgressIndicator());
+      },
+    );
+    // return Scaffold(
+    //     drawer: const NavDrawer(),
+    //     appBar: AppBar(
+    //       backgroundColor: Colors.white,
+    //       title: Image.asset(
+    //         'assets/logo.png',
+    //         width: 300,
+    //         height: 70,
+    //         alignment: Alignment.topLeft,
+    //       ),
+    //       foregroundColor: Colors.brown,
+    //       actions: <Widget>[
+    //         IconButton(
+    //           icon: const Icon(Icons.account_circle_rounded),
+    //           color: Colors.brown,
+    //           tooltip: 'Show contact',
+    //           onPressed: () {
+    //             ScaffoldMessenger.of(context)
+    //                 .showSnackBar(const SnackBar(content: Text('contact')));
+    //           },
+    //         ),
+    //       ],
+    //     ),
+    //     body: SafeArea(
+    //       child: Container(
+    //         decoration: const BoxDecoration(
+    //           image: DecorationImage(
+    //             image: AssetImage(
+    //                 "assets/background.jpg"), // replace with your own image path
+    //             fit:
+    //                 BoxFit.cover, // set the image to cover the entire container
+    //           ),
+    //         ),
+    //       ),
+    //     ));
   }
 }
 

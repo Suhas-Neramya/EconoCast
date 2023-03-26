@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../responsive_files/mobile_mail_layout.dart';
+
 class LoginController extends StatelessWidget {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -28,6 +30,11 @@ class LoginController extends StatelessWidget {
         final User? user = userCredential.user;
 
         print(user?.displayName);
+
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (BuildContext context) {
+          return const MobileMainPage();
+        }));
       } else {
         // handle sign-in failure
         ScaffoldMessenger.of(context).showSnackBar(
