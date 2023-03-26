@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'mobile_login_layout.dart';
 
@@ -9,11 +11,9 @@ class MobileMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-
       home: MainPage(),
-
     );
   }
 }
@@ -28,36 +28,39 @@ class MainPage extends StatelessWidget {
         drawer: const NavDrawer(),
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title:  Image.asset('assets/logo.png', width: 300,height: 70,alignment: Alignment.topLeft,),
+          title: Image.asset(
+            'assets/logo.png',
+            width: 300,
+            height: 70,
+            alignment: Alignment.topLeft,
+          ),
           foregroundColor: Colors.brown,
           actions: <Widget>[
-
             IconButton(
               icon: const Icon(Icons.account_circle_rounded),
               color: Colors.brown,
               tooltip: 'Show contact',
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('contact')));
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(const SnackBar(content: Text('contact')));
               },
             ),
-
           ],
         ),
-
-        body:  SafeArea( child: Container(
+        body: SafeArea(
+          child: Container(
             decoration: const BoxDecoration(
-            image: DecorationImage(
-            image: AssetImage("assets/background.jpg"), // replace with your own image path
-      fit: BoxFit.cover, // set the image to cover the entire container
-    ),
-    ),
-        ),
-        )
-    );
+              image: DecorationImage(
+                image: AssetImage(
+                    "assets/background.jpg"), // replace with your own image path
+                fit:
+                    BoxFit.cover, // set the image to cover the entire container
+              ),
+            ),
+          ),
+        ));
   }
 }
-
 
 class NavDrawer extends StatelessWidget {
   const NavDrawer({super.key});
@@ -67,16 +70,15 @@ class NavDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
-
         children: <Widget>[
           const DrawerHeader(
             decoration: BoxDecoration(
                 color: Colors.white,
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/logo-nav.jpg"))), child: null,
+                    image: AssetImage("assets/logo-nav.jpg"))),
+            child: null,
           ),
-
           ListTile(
             leading: const Icon(Icons.home_filled),
             title: const Text('Home'),
@@ -85,88 +87,87 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.perm_device_information),
             title: const Text('About'),
-            onTap: ()  {Navigator.push(context, MaterialPageRoute<void>(
-              builder: (BuildContext context) {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.amber,
-                    title: const Text('Econ'),
-                    foregroundColor: Colors.brown,
-                  ),
-                  body: Container(
-
-                  ),
-                );
-              },
-            ));
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      backgroundColor: Colors.amber,
+                      title: const Text('Econ'),
+                      foregroundColor: Colors.brown,
+                    ),
+                    body: Container(),
+                  );
+                },
+              ));
             },
           ),
           ListTile(
             leading: const Icon(Icons.newspaper_rounded),
             title: const Text('News'),
-            onTap: () {Navigator.push(context, MaterialPageRoute<void>(
-              builder: (BuildContext context) {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.amber,
-                    title: const Text('Econo'),
-                    foregroundColor: Colors.brown,
-                  ),
-                  body: Container(
-
-                  ),
-                );
-              },
-            ));
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      backgroundColor: Colors.amber,
+                      title: const Text('Econo'),
+                      foregroundColor: Colors.brown,
+                    ),
+                    body: Container(),
+                  );
+                },
+              ));
             },
           ),
-
           ListTile(
             leading: const Icon(Icons.notification_add),
             title: const Text('Notification'),
-            onTap: () {Navigator.push(context, MaterialPageRoute<void>(
-              builder: (BuildContext context) {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.amber,
-                    title: const Text('Econo'),
-                    foregroundColor: Colors.brown,
-                  ),
-                  body: Container(
-
-                  ),
-                );
-              },
-            ));
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      backgroundColor: Colors.amber,
+                      title: const Text('Econo'),
+                      foregroundColor: Colors.brown,
+                    ),
+                    body: Container(),
+                  );
+                },
+              ));
             },
           ),
           ListTile(
             leading: const Icon(Icons.history_outlined),
             title: const Text('History'),
-            onTap: () {Navigator.push(context, MaterialPageRoute<void>(
-              builder: (BuildContext context) {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.amber,
-                    title: const Text('Econo'),
-                    foregroundColor: Colors.brown,
-                  ),
-                  body: Container(
-
-                  ),
-                );
-              },
-            ));
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    appBar: AppBar(
+                      backgroundColor: Colors.amber,
+                      title: const Text('Econo'),
+                      foregroundColor: Colors.brown,
+                    ),
+                    body: Container(),
+                  );
+                },
+              ));
             },
           ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),
-            onTap: () => { Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) {
-                return const MobileLoginLayout();
-              },
-            ))},
+            onTap: () async => {
+              await GoogleSignIn().signOut(),
+              FirebaseAuth.instance.signOut(),
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return const MobileLoginLayout();
+                },
+              ))
+            },
           ),
         ],
       ),
