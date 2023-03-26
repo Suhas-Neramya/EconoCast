@@ -1,3 +1,4 @@
+import 'package:econo_cast/controller/login_controller.dart';
 import 'package:econo_cast/responsive_files/mobile_mail_layout.dart';
 import 'package:flutter/material.dart';
 
@@ -82,7 +83,9 @@ class MobileLoginLayout extends StatelessWidget {
                       LoginButton(
                           iconPath: 'assets/google-icon.png',
                           textInButtons: Text('Login with Google'),
-                          onPressed: () {}),
+                          onPressed: () {
+                            LoginController().googleSignWith(context);
+                          }),
 
                       SizedBox(height: 20),
 
