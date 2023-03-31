@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:html';
-
+import 'package:econo_cast/responsive_files/prediction_state/prediction_state.dart';
 import 'package:econo_cast/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../constants/dropdown_button.dart';
 
@@ -15,6 +17,47 @@ class DesktopMainPage extends StatefulWidget {
 }
 
 class _DesktopMainPageState extends State<DesktopMainPage> {
+// class DesktopMainPageState extends StatefulWidget {
+//   const DesktopMainPageState({super.key});
+
+//   @override
+//   State<DesktopMainPageState> createState() => _DesktopMainPageStateState();
+// }
+
+  String _prediction = "Neutral";
+
+  Future<void> _getPrediction() async {
+    final url = Uri.parse('https://suhasneramya.pythonanywhere.com/predict');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      final prediction = json('prediction')[0];
+      setState(() {
+        if (prediction == 0.0) {
+          _prediction = "Increasing";
+        } else if (prediction == 1.0) {
+          _prediction = "Decreasing";
+        } else {
+          _prediction = "Neutral";
+        }
+      });
+    } else {
+      throw Exception('Failed to get prediction');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getPrediction();
+  }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   // TODO: implement build
+  //   throw UnimplementedError();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,7 +202,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
 
                                       subtitle: Center(
                                         child: Text(
-                                          'Increased',
+                                          _prediction,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 40,
