@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../constants/dropdown_button.dart';
+import 'main-page_graph/main_graph.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
@@ -251,7 +252,9 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                             child: Card(
                               color: Color.fromARGB(255, 255, 255, 255),
                               elevation: 4.0,
-                              child: Container(),
+                              child: Container(
+                                child: PriceGraph(),
+                              ),
                             ),
                           ),
                         ),
