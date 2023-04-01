@@ -249,28 +249,9 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                           padding: EdgeInsets.all(16.0),
                           child: Expanded(
                             child: Card(
-                              color: mainPageTwoContainers,
+                              color: Color.fromARGB(255, 255, 255, 255),
                               elevation: 4.0,
-                              child: Column(
-                                children: <Widget>[
-                                  ListTile(
-                                    //leading: Icon(Icons.person),
-                                    title: Text(
-                                        'Declared Market Price In Dollers',
-                                        style: TextStyle(color: Colors.white)),
-                                    //subtitle: Text('john.doe@example.com'),
-                                    subtitle: Text(
-                                      '18% of products are sold',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    trailing: Chip(
-                                        label: Text(
-                                      '4,500',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
-                                  ),
-                                ],
-                              ),
+                              child: Container(),
                             ),
                           ),
                         ),
