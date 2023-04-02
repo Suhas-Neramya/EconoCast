@@ -145,52 +145,103 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                     children: [
                       Expanded(
                         child: Container(
-                          padding: EdgeInsets.all(10.0),
-                          child: Expanded(
-                            child: Card(
-                              color: mainPageTwoContainers,
-                              elevation: 4.0,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  ListTile(
-                                    title: Center(
-                                      child: Text(
-                                          'Declared Market Price In Dollers',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          )),
+                          padding: EdgeInsets.all(15.0),
+                          child: Card(
+                            color: mainPageTwoContainers,
+                            elevation: 4.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                ListTile(
+                                  title: Center(
+                                    child: Text(
+                                      'Declared Market Price In Dollers',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
-                                  SizedBox(height: 5),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          DropdownButtonExample(),
-                                        ],
-                                      ),
-                                      SizedBox(width: 10),
-                                      Column(
-                                        children: [
-                                          Container(
-                                              child: Text(
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        DropdownButtonExample(),
+                                      ],
+                                    ),
+                                    SizedBox(width: 10),
+                                    Column(
+                                      children: [
+                                        Container(
+                                          child: Text(
                                             '80.00',
                                             style: TextStyle(
-                                                fontSize: 30,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          )),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
+                        // child: Container(
+                        //   padding: EdgeInsets.all(10.0),
+                        //   child: Expanded(
+                        //     child: Card(
+                        //       color: mainPageTwoContainers,
+                        //       elevation: 4.0,
+                        //       child: Column(
+                        //         mainAxisAlignment: MainAxisAlignment.center,
+                        //         children: <Widget>[
+                        //           ListTile(
+                        //             title: Center(
+                        //               child: Text(
+                        //                   'Declared Market Price In Dollers',
+                        //                   style: TextStyle(
+                        //                     color: Colors.white,
+                        //                   )),
+                        //             ),
+                        //           ),
+                        //           SizedBox(height: 5),
+                        //           Row(
+                        //             mainAxisAlignment: MainAxisAlignment.center,
+                        //             children: [
+                        //               Column(
+                        //                 children: [
+                        //                   DropdownButtonExample(),
+                        //                 ],
+                        //               ),
+                        //               SizedBox(width: 10),
+                        //               Column(
+                        //                 children: [
+                        //                   Container(
+                        //                       child: Text(
+                        //                     '80.00',
+                        //                     style: TextStyle(
+                        //                         fontSize: 30,
+                        //                         fontWeight: FontWeight.bold,
+                        //                         color: Colors.white),
+                        //                   )),
+                        //                 ],
+                        //               ),
+                        //             ],
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ),
 
                       //----------------------------------------------------
@@ -358,6 +409,17 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                             SizedBox(
                               height: 5,
                             ),
+                            //---------------------Heading---------------
+                            Text(
+                              'Crude Oil Price Graph',
+                              style: TextStyle(
+                                color: darkBrownText,
+                                fontSize: 20,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
                             //-----------------------Switch---------------
                             SizedBox(
                               width: 250,
@@ -376,9 +438,16 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               ),
                             ),
                             SizedBox(
-                              height: 200,
+                              //height: 300,
                               child: Container(
-                                color: GraphBg,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  //color: Colors.grey[200],
+                                  color: GraphBg,
+                                ),
+                                // color: GraphBg,
+                                margin: EdgeInsets.only(
+                                    top: 10, bottom: 10, left: 30, right: 30),
                                 child: PriceGraph(),
                               ),
                             ),
