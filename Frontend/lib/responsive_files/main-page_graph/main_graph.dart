@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+import '../../styles/colors.dart';
+
 class PriceGraph extends StatefulWidget {
   const PriceGraph({super.key});
 
@@ -14,8 +16,8 @@ class PriceGraph extends StatefulWidget {
 
 class _PriceGraphState extends State<PriceGraph> {
   List<Color> gradientColors = [
-    Colors.green,
-    Colors.blue,
+    darkBrownText,
+    darkBrownText,
   ];
 
   bool showAvg = false;
@@ -51,7 +53,7 @@ class _PriceGraphState extends State<PriceGraph> {
               'avg',
               style: TextStyle(
                 fontSize: 12,
-                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
+                color: showAvg ? darkBrownText : darkBrownText,
               ),
             ),
           ),
@@ -63,7 +65,8 @@ class _PriceGraphState extends State<PriceGraph> {
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontSize: 10,
+      color: darkBrownText,
     );
     Widget text;
     switch (value.toInt()) {
@@ -91,11 +94,13 @@ class _PriceGraphState extends State<PriceGraph> {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 15,
+      color: darkBrownText,
     );
     String text;
     switch (value.toInt()) {
       case 1:
         text = '10K';
+
         break;
       case 3:
         text = '30k';
@@ -119,13 +124,13 @@ class _PriceGraphState extends State<PriceGraph> {
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return FlLine(
-            color: Colors.black,
+            color: Color.fromARGB(101, 185, 185, 185),
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
           return FlLine(
-            color: Colors.black,
+            color: Color.fromARGB(82, 161, 160, 160),
             strokeWidth: 1,
           );
         },
@@ -156,8 +161,8 @@ class _PriceGraphState extends State<PriceGraph> {
         ),
       ),
       borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
+        show: false,
+        border: Border.all(color: Color.fromARGB(255, 255, 255, 255)),
       ),
       minX: 0,
       maxX: 11,
@@ -206,13 +211,13 @@ class _PriceGraphState extends State<PriceGraph> {
         horizontalInterval: 1,
         getDrawingVerticalLine: (value) {
           return FlLine(
-            color: const Color(0xff37434d),
+            color: Color.fromARGB(123, 255, 255, 255),
             strokeWidth: 1,
           );
         },
         getDrawingHorizontalLine: (value) {
           return FlLine(
-            color: const Color(0xff37434d),
+            color: Color.fromARGB(104, 255, 255, 255),
             strokeWidth: 1,
           );
         },
@@ -244,7 +249,7 @@ class _PriceGraphState extends State<PriceGraph> {
       ),
       borderData: FlBorderData(
         show: true,
-        border: Border.all(color: const Color(0xff37434d)),
+        border: Border.all(color: Color.fromARGB(255, 255, 255, 255)),
       ),
       minX: 0,
       maxX: 11,
