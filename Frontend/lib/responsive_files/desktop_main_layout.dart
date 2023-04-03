@@ -21,31 +21,6 @@ class DesktopMainPage extends StatefulWidget {
 class _DesktopMainPageState extends State<DesktopMainPage> {
   String _prediction = "Text";
 
-  // Future<void> _getPrediction() async {
-  //   print('--------------------running prediction-------------');
-  //   final url = Uri.parse('https://suhasneramya.pythonanywhere.com/predict');
-  //   final response = await http.get(url);
-  //   print('-----------------response status code : ${response.body}');
-  //   if (response.statusCode == 200) {
-  //     final json = jsonDecode(response.body);
-  //     final prediction = json('prediction')[0];
-  //     print('print prediction : $prediction');
-  //     setState(() {
-  //       print('----------------changing state--------------------');
-  //       if (prediction == 0.0) {
-  //         _prediction = "Increasing";
-  //       } else if (prediction == 1.0) {
-  //         _prediction = "Decreasing";
-  //       } else {
-  //         _prediction = "Neutral";
-  //       }
-  //     });
-  //   } else {
-  //     print('----------------------response exception----------------');
-  //     throw Exception('Failed to get prediction');
-  //   }
-  // }
-
   Future<void> _getPrediction() async {
     final url = Uri.parse('https://suhasneramya.pythonanywhere.com/predict');
     final response = await http.get(url);
@@ -140,12 +115,12 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                 -----------------------------container 1----------------------------------
                 */
                 Expanded(
-                  flex: 3,
+                  flex: 2,
                   child: Row(
                     children: [
                       Expanded(
                         child: Container(
-                          padding: EdgeInsets.all(15.0),
+                          padding: EdgeInsets.all(10.0),
                           child: Card(
                             color: mainPageTwoContainers,
                             elevation: 4.0,
@@ -153,7 +128,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              //mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 ListTile(
                                   title: Center(
@@ -165,16 +140,19 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 5),
+                                //SizedBox(height: 5),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Column(
                                       children: [
-                                        DropdownButtonExample(),
+                                        SizedBox(
+                                          height: 20,
+                                          child: DropdownButtonExample(),
+                                        ),
                                       ],
                                     ),
-                                    SizedBox(width: 10),
+                                    SizedBox(width: 5),
                                     Column(
                                       children: [
                                         Container(
@@ -195,107 +173,12 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                             ),
                           ),
                         ),
-                        // child: Container(
-                        //   padding: EdgeInsets.all(10.0),
-                        //   child: Expanded(
-                        //     child: Card(
-                        //       color: mainPageTwoContainers,
-                        //       elevation: 4.0,
-                        //       child: Column(
-                        //         mainAxisAlignment: MainAxisAlignment.center,
-                        //         children: <Widget>[
-                        //           ListTile(
-                        //             title: Center(
-                        //               child: Text(
-                        //                   'Declared Market Price In Dollers',
-                        //                   style: TextStyle(
-                        //                     color: Colors.white,
-                        //                   )),
-                        //             ),
-                        //           ),
-                        //           SizedBox(height: 5),
-                        //           Row(
-                        //             mainAxisAlignment: MainAxisAlignment.center,
-                        //             children: [
-                        //               Column(
-                        //                 children: [
-                        //                   DropdownButtonExample(),
-                        //                 ],
-                        //               ),
-                        //               SizedBox(width: 10),
-                        //               Column(
-                        //                 children: [
-                        //                   Container(
-                        //                       child: Text(
-                        //                     '80.00',
-                        //                     style: TextStyle(
-                        //                         fontSize: 30,
-                        //                         fontWeight: FontWeight.bold,
-                        //                         color: Colors.white),
-                        //                   )),
-                        //                 ],
-                        //               ),
-                        //             ],
-                        //           ),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                       ),
-
-                      //----------------------------------------------------
-
-                      // SizedBox(
-                      //   width: 10,
-                      // ),
-
-                      /*
-                      --------------------------upper row container 2--------------------------------
-                      */
-                      // Expanded(
-                      //   child: Container(
-                      //     padding: EdgeInsets.all(15.0),
-                      //     child: Expanded(
-                      //       child: Card(
-                      //         shape: RoundedRectangleBorder(
-                      //           borderRadius: BorderRadius.circular(10),
-                      //         ),
-                      //         color: mainPageTwoContainers,
-                      //         elevation: 4.0,
-                      //         child: Column(
-                      //           children: <Widget>[
-                      //             Padding(
-                      //               padding: const EdgeInsets.only(top: 40),
-                      //               child: ListTile(
-                      //                 title: Center(
-                      //                   child: Text(
-                      //                     'Predicted crude oil price change',
-                      //                     style: TextStyle(color: Colors.white),
-                      //                   ),
-                      //                 ),
-                      //                 subtitle: Center(
-                      //                   child: Text(
-                      //                     _prediction,
-                      //                     style: TextStyle(
-                      //                       color: Colors.white,
-                      //                       fontSize: 30,
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //               ),
-                      //             ),
-                      //           ],
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
 
                       //-----------------------------------------
                       Expanded(
                         child: Container(
-                          padding: EdgeInsets.all(15.0),
+                          padding: EdgeInsets.all(10.0),
                           child: Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -305,7 +188,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                             child: Column(
                               children: <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 40),
+                                  padding: const EdgeInsets.only(top: 20),
                                   child: ListTile(
                                     title: Center(
                                       child: Text(
@@ -332,68 +215,11 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                     ],
                   ),
                 ),
-                //SizedBox(height: 10),
-
-                //---------------------------------below row----------------------------
-                //-----------------------------------graph--------------------------------
-                // Expanded(
-                //   flex: 7,
-                //   child: Row(
-                //     children: [
-                //       Expanded(
-                //         child: Container(
-                //           padding: EdgeInsets.all(16.0),
-                //           child: Expanded(
-                //             child: Card(
-                //               color: Color.fromARGB(255, 255, 255, 255),
-                //               elevation: 4.0,
-                //               child: SizedBox(
-                //                 height: 400,
-                //                 child: Container(
-                //                   child: Column(
-                //                     children: [
-                //                       SizedBox(
-                //                         height: 5,
-                //                       ),
-                //                       //-----------------------Switch---------------
-                //                       SizedBox(
-                //                         width: 250,
-                //                         child: SwitchUp<String>(
-                //                           backgroundColor: GraphBg,
-                //                           color: mainPageTwoContainers,
-                //                           items: const <String>[
-                //                             'Week',
-                //                             'Month',
-                //                             'Year',
-                //                           ],
-                //                           onChanged: (String value) {
-                //                             print(value);
-                //                           },
-                //                           value: 'Settings',
-                //                         ),
-                //                       ),
-                //                       SizedBox(
-                //                         height: 200,
-                //                         child: Container(
-                //                           color: GraphBg,
-                //                           child: PriceGraph(),
-                //                         ),
-                //                       ),
-                //                     ],
-                //                   ),
-                //                 ),
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // )
 
                 //---------------------------
+
                 Expanded(
-                  flex: 7,
+                  flex: 8,
                   child: Container(
                     padding: EdgeInsets.all(16.0),
                     child: Card(
@@ -402,57 +228,54 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
-                      child: SizedBox(
-                        height: 400,
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 5,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 15,
+                          ),
+                          //---------------------Heading---------------
+                          Text(
+                            'Crude Oil Price Graph',
+                            style: TextStyle(
+                              color: darkBrownText,
+                              fontSize: 20,
                             ),
-                            //---------------------Heading---------------
-                            Text(
-                              'Crude Oil Price Graph',
-                              style: TextStyle(
-                                color: darkBrownText,
-                                fontSize: 20,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          //-----------------------Switch---------------
+                          SizedBox(
+                            width: 250,
+                            height: 25,
+                            child: SwitchUp<String>(
+                              backgroundColor: GraphBg,
+                              color: mainPageTwoContainers,
+                              selectedTextColor: Colors.amber,
+                              unselectedTextColor: Colors.amber,
+                              items: const <String>[
+                                'Week',
+                                'Month',
+                                'Year',
+                              ],
+                              onChanged: (String value) {
+                                print(value);
+                              },
+                              value: 'Settings',
+                            ),
+                          ),
+                          SizedBox(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: GraphBg,
                               ),
+                              margin: EdgeInsets.only(
+                                  top: 10, bottom: 10, left: 100, right: 100),
+                              child: PriceGraph(),
                             ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            //-----------------------Switch---------------
-                            SizedBox(
-                              width: 250,
-                              child: SwitchUp<String>(
-                                backgroundColor: GraphBg,
-                                color: mainPageTwoContainers,
-                                items: const <String>[
-                                  'Week',
-                                  'Month',
-                                  'Year',
-                                ],
-                                onChanged: (String value) {
-                                  print(value);
-                                },
-                                value: 'Settings',
-                              ),
-                            ),
-                            SizedBox(
-                              //height: 300,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  //color: Colors.grey[200],
-                                  color: GraphBg,
-                                ),
-                                // color: GraphBg,
-                                margin: EdgeInsets.only(
-                                    top: 10, bottom: 10, left: 30, right: 30),
-                                child: PriceGraph(),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -472,23 +295,14 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                     padding: EdgeInsets.all(16.0),
                     child: Expanded(
                       child: Card(
-                        color: mainPageTwoContainers,
+                        color: Colors.white,
                         elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
                         child: Column(
                           children: <Widget>[
-                            ListTile(
-                              title: Text('Declared Market Price In Dollers',
-                                  style: TextStyle(color: Colors.white)),
-                              subtitle: Text(
-                                '18% of products are sold',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              trailing: Chip(
-                                  label: Text(
-                                '4,500',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                            ),
+                            ListTile(),
                           ],
                         ),
                       ),

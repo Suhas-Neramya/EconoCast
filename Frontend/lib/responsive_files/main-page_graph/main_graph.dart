@@ -124,13 +124,13 @@ class _PriceGraphState extends State<PriceGraph> {
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return FlLine(
-            color: Color.fromARGB(101, 185, 185, 185),
+            color: Color.fromARGB(255, 255, 255, 255),
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
           return FlLine(
-            color: Color.fromARGB(82, 161, 160, 160),
+            color: Color.fromARGB(255, 255, 255, 255),
             strokeWidth: 1,
           );
         },
@@ -211,13 +211,13 @@ class _PriceGraphState extends State<PriceGraph> {
         horizontalInterval: 1,
         getDrawingVerticalLine: (value) {
           return FlLine(
-            color: Color.fromARGB(123, 255, 255, 255),
+            color: Color.fromARGB(255, 255, 255, 255),
             strokeWidth: 1,
           );
         },
         getDrawingHorizontalLine: (value) {
           return FlLine(
-            color: Color.fromARGB(104, 255, 255, 255),
+            color: Color.fromARGB(255, 255, 255, 255),
             strokeWidth: 1,
           );
         },
