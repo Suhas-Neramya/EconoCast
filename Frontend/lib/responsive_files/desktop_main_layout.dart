@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:html';
-//import 'package:econo_cast/responsive_files/prediction_state/prediction_state.dart';
+
 import 'package:econo_cast/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -19,7 +19,8 @@ class DesktopMainPage extends StatefulWidget {
 }
 
 class _DesktopMainPageState extends State<DesktopMainPage> {
-  String _prediction = "Text";
+  //-------------------------------Predicting the price state----------------
+  String _prediction = " ";
 
   Future<void> _getPrediction() async {
     final url = Uri.parse('https://suhasneramya.pythonanywhere.com/predict');
@@ -45,9 +46,14 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
   void initState() {
     super.initState();
     _getPrediction();
+
     print(
         '-----------------------------initialising page----------------------------------');
   }
+
+  //--------------------------Displaying the latest price------------------------------------
+
+  //----------------------------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
