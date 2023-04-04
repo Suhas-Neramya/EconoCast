@@ -101,8 +101,15 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                 iconSize: 30,
                 onPressed: () {},
                 icon: Icon(Icons.person_rounded)),
+            IconButton(
+              color: mainPageIcons,
+              iconSize: 30,
+              onPressed: () {},
+              icon: Icon(Icons.logout),
+            ),
           ],
         ),
+        // automaticallyImplyLeading: false,
       ),
 
       /*
