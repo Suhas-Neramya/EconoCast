@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:econo_cast/constants/constants.dart';
+import 'package:econo_cast/login_controller/login_page.dart';
 import 'package:econo_cast/responsive_files/desktop_main_layout.dart';
 import 'package:flutter/material.dart';
 import '../styles/colors.dart';
@@ -73,7 +74,9 @@ class DesktopLoginLayout extends StatelessWidget {
                       LoginButton(
                           iconPath: 'assets/google-icon.png',
                           textInButtons: Text('Login with Google'),
-                          onPressed: () {}),
+                          onPressed: () {
+                            LoginPage().googleSignWith(context);
+                          }),
 
                       SizedBox(height: 20),
 
