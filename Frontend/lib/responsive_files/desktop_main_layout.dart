@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:html';
-
+//import 'package:econo_cast/responsive_files/prediction_state/prediction_state.dart';
 import 'package:econo_cast/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
