@@ -1,6 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
+//import 'dart:ffi';
 import 'dart:html';
 
+import 'package:econo_cast/responsive_files/DataModel/DataModel.dart';
 import 'package:econo_cast/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -19,8 +22,45 @@ class DesktopMainPage extends StatefulWidget {
 }
 
 class _DesktopMainPageState extends State<DesktopMainPage> {
+  //-------------------------------------------------------------------------
+
+  StreamController<DataModel> _streamController = StreamController();
+
+  @override
+  void dispose() {
+    _streamController.close();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    //_initValue1();
+    _initValue2();
+    _getPrice();
+  }
+
+  // void _initValue1() {
+  //   Timer.periodic(Duration(seconds: 3), (Timer) {
+  //     getPrice();
+  //   });
+  // }
+
+  // Future<void> getPrice() async {
+  //   var url = Uri.parse('https://econocast.pythonanywhere.com/latestPrice');
+
+  //   final responsePrice = await http.get(url);
+  //   final databodyPrice = jsonDecode(responsePrice.body).first;
+
+  //   DataModel dataModel = new DataModel.fromJson(databodyPrice);
+
+  //   _streamController.sink.add(dataModel); //stores the data from the url
+  // }
+
+  //-------------------------------------------------------------------------
   //-------------------------------Predicting the price state----------------
   String _prediction = " ";
+  double _price = 0.00;
 
   Future<void> _getPrediction() async {
     final url = Uri.parse('https://suhasneramya.pythonanywhere.com/predict');
@@ -42,13 +82,32 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _getPrediction();
+  Future<void> _getPrice() async {
+    final url = Uri.parse('https://econocast.pythonanywhere.com/latestPrice');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      print('-----------------------------print json price ${json['Price']}');
+      //final prediction = json['Price'][0];
+      setState(() {
+        _price = json['Price'];
+      });
+    } else {
+      throw Exception('Failed to get prediction');
+    }
+  }
 
-    print(
-        '-----------------------------initialising page----------------------------------');
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _getPrediction();
+
+  //   print(
+  //       '-----------------------------initialising page----------------------------------');
+  // }
+
+  void _initValue2() {
+    _getPrediction();
   }
 
   //--------------------------Displaying the latest price------------------------------------
@@ -124,6 +183,67 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                   flex: 2,
                   child: Row(
                     children: [
+                      // Expanded(
+
+                      //         return Container(
+                      //           padding: EdgeInsets.all(10.0),
+                      //           child: Card(
+                      //             color: mainPageTwoContainers,
+                      //             elevation: 4.0,
+                      //             shape: RoundedRectangleBorder(
+                      //               borderRadius: BorderRadius.circular(20),
+                      //             ),
+                      //             child: Column(
+                      //               //mainAxisAlignment: MainAxisAlignment.center,
+                      //               children: <Widget>[
+                      //                 ListTile(
+                      //                   title: Center(
+                      //                     child: Text(
+                      //                       'Declared Market Price In Dollers',
+                      //                       style: TextStyle(
+                      //                         color: Colors.white,
+                      //                       ),
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //                 //SizedBox(height: 5),
+                      //                 Row(
+                      //                   mainAxisAlignment:
+                      //                       MainAxisAlignment.center,
+                      //                   children: [
+                      //                     Column(
+                      //                       children: [
+                      //                         SizedBox(
+                      //                           height: 20,
+                      //                           child: DropdownButtonExample(),
+                      //                         ),
+                      //                       ],
+                      //                     ),
+                      //                     SizedBox(width: 5),
+                      //                     Column(
+                      //                       children: [
+                      //                         Container(
+                      //                           child: Text(
+
+                      //                             _price.toString(),
+                      //                             style: TextStyle(
+                      //                               fontSize: 30,
+                      //                               fontWeight: FontWeight.bold,
+                      //                               color: Colors.white,
+                      //                             ),
+                      //                           ),
+                      //                         ),
+                      //                       ],
+                      //                     ),
+                      //                   ],
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         );
+
+                      // ),
+
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10.0),
@@ -163,7 +283,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                       children: [
                                         Container(
                                           child: Text(
-                                            '80.00',
+                                            _price.toString(),
                                             style: TextStyle(
                                               fontSize: 30,
                                               fontWeight: FontWeight.bold,
