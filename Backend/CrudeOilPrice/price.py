@@ -44,7 +44,13 @@ def addPriceToDataBase():
     doc_ref = db.collection('prices').document(formatted_date)
     doc_ref.set(price_data)
 
+def getLatestPrice():
+    docs_ref = db.collection('prices')
+    last_doc = docs_ref.order_by('Time', direction=firestore.Query.DESCENDING).limit(1).get()
 
+    for doc in last_doc:
+        price = doc.get('Price')
+        return price
 
 #price = connectAPI()
 initializeFirebaseApp()
@@ -53,4 +59,7 @@ initializeFirebaseApp()
 # Create a Firestore client
 db = firestore.client()
 
-addPriceToDataBase()
+#addPriceToDataBase()
+
+price = getLatestPrice()
+print("Price :", price)
