@@ -19,7 +19,7 @@ class DesktopMainPage extends StatefulWidget {
 }
 
 class _DesktopMainPageState extends State<DesktopMainPage> {
-  String _prediction = " ";
+  String _prediction = "Text";
 
   Future<void> _getPrediction() async {
     final url = Uri.parse('https://suhasneramya.pythonanywhere.com/predict');
