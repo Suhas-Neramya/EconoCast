@@ -10,4 +10,5 @@ def getWeekPrice():
     for i in range(900):
         weeklyPriceArray.append(data['data'][i])
     
+    return weeklyPriceArray
     
