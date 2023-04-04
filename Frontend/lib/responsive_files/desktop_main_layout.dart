@@ -1,9 +1,13 @@
-//import 'dart:html';
+import 'dart:convert';
+import 'dart:html';
 
 import 'package:econo_cast/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:switch_up/switch_up.dart';
 
 import '../constants/dropdown_button.dart';
+import 'main-page_graph/main_graph.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
@@ -15,6 +19,36 @@ class DesktopMainPage extends StatefulWidget {
 }
 
 class _DesktopMainPageState extends State<DesktopMainPage> {
+  String _prediction = " ";
+
+  Future<void> _getPrediction() async {
+    final url = Uri.parse('https://suhasneramya.pythonanywhere.com/predict');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      final prediction = json['prediction'][0];
+      setState(() {
+        if (prediction == 0.0) {
+          _prediction = "Increasing";
+        } else if (prediction == 1.0) {
+          _prediction = "Decreasing";
+        } else {
+          _prediction = "Neutral";
+        }
+      });
+    } else {
+      throw Exception('Failed to get prediction');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getPrediction();
+    print(
+        '-----------------------------initialising page----------------------------------');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,113 +110,104 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
             //-------------------------------left column-------------------------------
             child: Column(
               children: [
-                //-------------------------------upper row------------------------------
+                /*
+                * --------------------------upper row---------------------------------
+                -----------------------------container 1----------------------------------
+                */
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Row(
                     children: [
                       Expanded(
                         child: Container(
-                          padding: EdgeInsets.all(16.0),
-                          child: Expanded(
-                            child: Card(
-                              color: mainPageTwoContainers,
-                              elevation: 4.0,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  const ListTile(
-                                    title: Center(
-                                      child: Text(
-                                          'Declared Market Price In Dollers',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          )),
+                          padding: EdgeInsets.all(10.0),
+                          child: Card(
+                            color: mainPageTwoContainers,
+                            elevation: 4.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              //mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                ListTile(
+                                  title: Center(
+                                    child: Text(
+                                      'Declared Market Price In Dollers',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
-                                  SizedBox(height: 20),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Column(
-                                        children:  [
-                                          DropdownButtonExample(),
-                                        ],
-                                      ),
-                                      SizedBox(width: 10),
-                                      Column(
-                                        children: [
-                                          Container(
-                                              child: Text(
+                                ),
+                                //SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 20,
+                                          child: DropdownButtonExample(),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(width: 5),
+                                    Column(
+                                      children: [
+                                        Container(
+                                          child: Text(
                                             '80.00',
                                             style: TextStyle(
-                                                fontSize: 40,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          )),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
+
+                      //-----------------------------------------
                       Expanded(
                         child: Container(
-                          // width: 300,
-                          // height: 200,
-                          padding: EdgeInsets.all(16.0),
-                          child: Expanded(
-                            child: Card(
-                              color: mainPageTwoContainers,
-                              elevation: 4.0,
-                              child: Column(
-
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 40),
-                                    child: ListTile(
-                                      //leading: Icon(Icons.person),
-                                      title: Center(
-                                        //padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          'Predicted crude oil price change',
-                                          style: TextStyle(color: Colors.white),
+                          padding: EdgeInsets.all(10.0),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            color: mainPageTwoContainers,
+                            elevation: 4.0,
+                            child: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: ListTile(
+                                    title: Center(
+                                      child: Text(
+                                        'Predicted crude oil price change',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                    subtitle: Center(
+                                      child: Text(
+                                        _prediction,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
                                         ),
                                       ),
-                                      //subtitle: Text('john.doe@example.com'),
-
-                                      subtitle: Center(
-                                        child: Text(
-                                          'Increased',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 40,
-                                          ),
-                                        ),
-                                      ),
-
-                                children: const <Widget>[
-                                  ListTile(
-                                    //leading: Icon(Icons.person),
-                                    title: Text(
-                                        'Declared Market Price In Dollers',
-                                        style: TextStyle(color: Colors.white)),
-                                    //subtitle: Text('john.doe@example.com'),
-                                    subtitle: Text(
-                                      '18% of products are sold',
-                                      style: TextStyle(color: Colors.white),
-
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -190,50 +215,71 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
 
-                //---------------------------------below row----------------------------
-                //-----------------------------------graph--------------------------------
+                //---------------------------
+
                 Expanded(
-                  flex: 2,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        //flex: 2,
-                        child: Container(
-                          //width: 800,
-                          padding: EdgeInsets.all(16.0),
-                          child: Expanded(
-                            child: Card(
-                              color: mainPageTwoContainers,
-                              elevation: 4.0,
-                              child: Column(
-                                children: const <Widget>[
-                                  ListTile(
-                                    //leading: Icon(Icons.person),
-                                    title: Text(
-                                        'Declared Market Price In Dollers',
-                                        style: TextStyle(color: Colors.white)),
-                                    //subtitle: Text('john.doe@example.com'),
-                                    subtitle: Text(
-                                      '18% of products are sold',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    trailing: Chip(
-                                        label: Text(
-                                      '4,500',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
-                                  ),
-                                ],
-                              ),
+                  flex: 8,
+                  child: Container(
+                    padding: EdgeInsets.all(16.0),
+                    child: Card(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      elevation: 4.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 15,
+                          ),
+                          //---------------------Heading---------------
+                          Text(
+                            'Crude Oil Price Graph',
+                            style: TextStyle(
+                              color: darkBrownText,
+                              fontSize: 20,
                             ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          //-----------------------Switch---------------
+                          SizedBox(
+                            width: 250,
+                            height: 25,
+                            child: SwitchUp<String>(
+                              backgroundColor: GraphBg,
+                              color: mainPageTwoContainers,
+                              selectedTextColor: Colors.amber,
+                              unselectedTextColor: Colors.amber,
+                              items: const <String>[
+                                'Week',
+                                'Month',
+                                'Year',
+                              ],
+                              onChanged: (String value) {
+                                print(value);
+                              },
+                              value: 'Settings',
+                            ),
+                          ),
+                          SizedBox(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: GraphBg,
+                              ),
+                              margin: EdgeInsets.only(
+                                  top: 10, bottom: 10, left: 100, right: 100),
+                              child: PriceGraph(),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -246,30 +292,17 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
               children: [
                 Expanded(
                   child: Container(
-                    // width: 400,
-                    // height: 200,
                     padding: EdgeInsets.all(16.0),
                     child: Expanded(
                       child: Card(
-                        color: mainPageTwoContainers,
+                        color: Colors.white,
                         elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
                         child: Column(
-                          children: const <Widget>[
-                            ListTile(
-                              //leading: Icon(Icons.person),
-                              title: Text('Declared Market Price In Dollers',
-                                  style: TextStyle(color: Colors.white)),
-                              //subtitle: Text('john.doe@example.com'),
-                              subtitle: Text(
-                                '18% of products are sold',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              trailing: Chip(
-                                  label: Text(
-                                '4,500',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                            ),
+                          children: <Widget>[
+                            ListTile(),
                           ],
                         ),
                       ),
