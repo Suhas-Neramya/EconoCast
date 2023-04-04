@@ -29,14 +29,28 @@ def initializeFirebaseApp():
     firebase_admin.initialize_app(cred)
 
 def addPriceToDataBase():
+
+    # set current time and date
     now = datetime.datetime.now()
     formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
-    print(formatted_date)
+    #print(formatted_date)
 
-price = connectAPI()
+    # Add price data to Firestore
+    price_data = {
+        'Price' : connectAPI(),
+        'Time' : firestore.SERVER_TIMESTAMP
+    }
+
+    doc_ref = db.collection('prices').document(formatted_date)
+    doc_ref.set(price_data)
+
+
+
+#price = connectAPI()
 initializeFirebaseApp()
-print('Latest Price :',price)
-addPriceToDataBase()
+
 
 # Create a Firestore client
 db = firestore.client()
+
+addPriceToDataBase()
