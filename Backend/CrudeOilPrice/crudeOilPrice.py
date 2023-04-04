@@ -1,5 +1,13 @@
 import requests
 
+def getDailyPrice():
+    url = 'https://www.alphavantage.co/query?function=BRENT&interval=daily&apikey=VJ0EKFU4FBWNT7EG'
+    r = requests.get(url)
+    data = r.json()
+
+
+    
+
 def getWeekPrice():
     url = 'https://www.alphavantage.co/query?function=BRENT&interval=weekly&apikey=VJ0EKFU4FBWNT7EG'
     r = requests.get(url)
@@ -23,3 +31,4 @@ def getMonthlyPrice():
         monthlyPriceArray.append(record)
 
     return monthlyPriceArray
+
