@@ -2,11 +2,14 @@ import 'dart:convert';
 import 'dart:html';
 
 import 'package:econo_cast/styles/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:switch_up/switch_up.dart';
 
 import '../constants/dropdown_button.dart';
+import 'desktop_login_layout.dart';
 import 'main-page_graph/main_graph.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
@@ -104,7 +107,15 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
             IconButton(
               color: mainPageIcons,
               iconSize: 30,
-              onPressed: () {},
+              onPressed: () async {
+                await GoogleSignIn().signOut();
+                FirebaseAuth.instance.signOut();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const DesktopLoginLayout();
+                  },
+                ));
+              },
               icon: Icon(Icons.logout),
             ),
           ],

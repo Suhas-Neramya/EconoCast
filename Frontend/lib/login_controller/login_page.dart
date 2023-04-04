@@ -29,7 +29,12 @@ class LoginPage extends StatelessWidget {
             await FirebaseAuth.instance.signInWithCredential(credential);
         final User? user = userCredential.user;
 
-        print(user?.displayName);
+        String? name = user?.displayName;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Hello $name")),
+        );
+
+        // print();
 
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (BuildContext context) {
