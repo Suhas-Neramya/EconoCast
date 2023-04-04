@@ -19,6 +19,10 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: mainPageBg,
+
+      /**
+       * app bar
+       */
       appBar: AppBar(
         backgroundColor: mainPageBg,
         title: Row(
@@ -36,10 +40,12 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
             Text(
               'Crude Oil Price Forecast',
               style: TextStyle(
-                color: darkBrownText, // Change this color to the desired color
+                color: darkBrownText,
               ),
             ),
             Spacer(),
+
+            //-----------------------------------icons in the app bar--------------------------------------
             IconButton(
                 color: mainPageIcons,
                 iconSize: 30,
@@ -59,34 +65,31 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
         ),
       ),
 
-      //--------------------------------------------------------------------------
-      //-----------------------body--------------------------------------------
+      /*
+       * --------------------------------body------------------------------------------
+       */
       body: Row(
         children: [
           Expanded(
-            flex: 2,
+            flex: 3,
+
+            //-------------------------------left column-------------------------------
             child: Column(
               children: [
+                //-------------------------------upper row------------------------------
                 Expanded(
+                  flex: 1,
                   child: Row(
                     children: [
                       Expanded(
                         child: Container(
-                          // decoration: BoxDecoration(
-                          //     //color: constants.purpleDark,
-                          //     borderRadius:
-                          //         BorderRadius.all(Radius.circular(50))),
-                          // width: 300,
-                          // height: 200,
                           padding: EdgeInsets.all(16.0),
                           child: Expanded(
                             child: Card(
-                              //margin: EdgeInsets.all(30),
                               color: mainPageTwoContainers,
                               elevation: 4.0,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                //crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   const ListTile(
                                     title: Center(
@@ -96,20 +99,6 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                             color: Colors.white,
                                           )),
                                     ),
-
-                                    // subtitle: Container(
-                                    //     color: Colors.white,
-                                    //     child: DropdownButtonExample()),
-
-                                    // trailing: Text(
-                                    //   '18% ',
-                                    //   style: TextStyle(color: Colors.white),
-                                    // ),
-                                    // trailing: Chip(
-                                    //     label: Text(
-                                    //   '4,500',
-                                    //   style: TextStyle(color: Colors.white),
-                                    // )),
                                   ),
                                   SizedBox(height: 20),
                                   Row(
@@ -154,6 +143,31 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               color: mainPageTwoContainers,
                               elevation: 4.0,
                               child: Column(
+
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 40),
+                                    child: ListTile(
+                                      //leading: Icon(Icons.person),
+                                      title: Center(
+                                        //padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Predicted crude oil price change',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                      //subtitle: Text('john.doe@example.com'),
+
+                                      subtitle: Center(
+                                        child: Text(
+                                          'Increased',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 40,
+                                          ),
+                                        ),
+                                      ),
+
                                 children: const <Widget>[
                                   ListTile(
                                     //leading: Icon(Icons.person),
@@ -164,12 +178,8 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                     subtitle: Text(
                                       '18% of products are sold',
                                       style: TextStyle(color: Colors.white),
+
                                     ),
-                                    trailing: Chip(
-                                        label: Text(
-                                      '4,500',
-                                      style: TextStyle(color: Colors.white),
-                                    )),
                                   ),
                                 ],
                               ),
@@ -182,11 +192,14 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                 ),
                 SizedBox(height: 10),
 
-                //---------------------------------graph----------------------------
+                //---------------------------------below row----------------------------
+                //-----------------------------------graph--------------------------------
                 Expanded(
+                  flex: 2,
                   child: Row(
                     children: [
                       Expanded(
+                        //flex: 2,
                         child: Container(
                           //width: 800,
                           padding: EdgeInsets.all(16.0),
@@ -225,9 +238,10 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
             ),
           ),
 
-          //-----------------------------news-----------------------------------
+          //-----------------------------right column-----------------------------------
+          //------------------------------news container--------------------------------
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Column(
               children: [
                 Expanded(
