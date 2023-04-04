@@ -52,14 +52,15 @@ def getLatestPrice():
         price = doc.get('Price')
         return price
 
-#price = connectAPI()
-initializeFirebaseApp()
 
+initializeFirebaseApp()
 
 # Create a Firestore client
 db = firestore.client()
 
-#addPriceToDataBase()
+# add latest Price to firestore from oil price API
+addPriceToDataBase()
 
+# get latest Price from firestore
 price = getLatestPrice()
 print("Price :", price)
