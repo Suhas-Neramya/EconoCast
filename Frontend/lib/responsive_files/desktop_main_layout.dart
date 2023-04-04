@@ -1,4 +1,4 @@
-import 'dart:html';
+//import 'dart:html';
 
 import 'package:econo_cast/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +91,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  ListTile(
+                                  const ListTile(
                                     title: Center(
                                       child: Text(
                                           'Declared Market Price In Dollers',
@@ -105,7 +105,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Column(
-                                        children: [
+                                        children:  [
                                           DropdownButtonExample(),
                                         ],
                                       ),
@@ -143,6 +143,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               color: mainPageTwoContainers,
                               elevation: 4.0,
                               child: Column(
+
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.only(top: 40),
@@ -166,6 +167,18 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                           ),
                                         ),
                                       ),
+
+                                children: const <Widget>[
+                                  ListTile(
+                                    //leading: Icon(Icons.person),
+                                    title: Text(
+                                        'Declared Market Price In Dollers',
+                                        style: TextStyle(color: Colors.white)),
+                                    //subtitle: Text('john.doe@example.com'),
+                                    subtitle: Text(
+                                      '18% of products are sold',
+                                      style: TextStyle(color: Colors.white),
+
                                     ),
                                   ),
                                 ],
@@ -195,7 +208,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               color: mainPageTwoContainers,
                               elevation: 4.0,
                               child: Column(
-                                children: <Widget>[
+                                children: const <Widget>[
                                   ListTile(
                                     //leading: Icon(Icons.person),
                                     title: Text(
@@ -241,7 +254,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                         color: mainPageTwoContainers,
                         elevation: 4.0,
                         child: Column(
-                          children: <Widget>[
+                          children: const <Widget>[
                             ListTile(
                               //leading: Icon(Icons.person),
                               title: Text('Declared Market Price In Dollers',
