@@ -1,4 +1,7 @@
 import requests #Install the requests library using pip.
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
 
 
@@ -20,5 +23,14 @@ def connectAPI():
 
     return (data['data']['price'])
 
+def initializeFirebaseApp():
+    cred = credentials.Certificate('econocast-72fdc-firebase-adminsdk-2er3u-212c1c2255.json')
+    firebase_admin.initialize_app(cred)
+
+
 price = connectAPI()
+initializeFirebaseApp()
 print('Latest Price :',price)
+
+# Create a Firestore client
+db = firestore.client()
