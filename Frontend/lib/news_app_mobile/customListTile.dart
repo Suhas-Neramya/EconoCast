@@ -57,7 +57,11 @@ Widget customListTile(Article article, BuildContext context) {
 <<<<<<< frontend-ui-irushi
               color: Color(0xFFE1D8B3),
 =======
+<<<<<<< frontend-ui-irushi
+              color: Color(0xFFE1D8B3),
+=======
               color: Colors.brown,
+>>>>>>> frontend-ui-nisalya
 >>>>>>> frontend-ui-nisalya
               borderRadius: BorderRadius.circular(30.0),
             ),
