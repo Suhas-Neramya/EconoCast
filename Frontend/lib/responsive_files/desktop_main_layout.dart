@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 //import 'dart:ffi';
 import 'dart:html';
+import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:econo_cast/responsive_files/DataModel/DataModel.dart';
 import 'package:econo_cast/styles/colors.dart';
@@ -11,6 +12,9 @@ import 'package:switch_up/switch_up.dart';
 
 import '../constants/dropdown_button.dart';
 import 'main-page_graph/main_graph.dart';
+
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
@@ -22,6 +26,23 @@ class DesktopMainPage extends StatefulWidget {
 }
 
 class _DesktopMainPageState extends State<DesktopMainPage> {
+  //--------------------------------------------------------------------------
+  List<PriceWeekly> weeklyPrice = [];
+
+  Future<String> getWeeklyPrice() async {
+    String url = ('https://econocast.pythonanywhere.com/weeklyPrice');
+    http.Response response = await http.get(Uri.parse(url));
+    return response.body;
+  }
+
+  Future loadPriceWeekly() async {
+    final String jsonString = await getWeeklyPrice();
+    final dynamic jasonResponse = jsonDecode(jsonString);
+    for (Map<String, dynamic> i in jasonResponse) {
+      weeklyPrice.add(PriceWeekly.fromJson(i));
+    }
+  }
+
   //-------------------------------------------------------------------------
 
   StreamController<DataModel> _streamController = StreamController();
@@ -38,6 +59,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     //_initValue1();
     _initValue2();
     _getPrice();
+    loadPriceWeekly();
   }
 
   // void _initValue1() {
@@ -97,6 +119,20 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     }
   }
 
+  // Future<String> getWeeklyPrice() async {
+  //   String url = ('https://econocast.pythonanywhere.com/weeklyPrice');
+  //   http.Response response = await http.get(Uri.parse(url));
+  //   return response.body;
+  // }
+
+  // Future loadWeeklyPrice() async {
+  //   final String jsonString = await getWeeklyPrice();
+  //   final dynamic jsonResponse = jsonDecode(jsonString);
+  //   for (Map<String, dynamic> i in jsonResponse) {
+  //     PriceWeekly.add(PriceWeekly.fromJson(i));
+  //   }
+  // }
+
   // @override
   // void initState() {
   //   super.initState();
@@ -110,8 +146,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     _getPrediction();
   }
 
-  //--------------------------Displaying the latest price------------------------------------
-
+  //--------------------------Displaying the latest price-----------------------------------
   //----------------------------------------------------------------------------
 
   @override
@@ -398,7 +433,47 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               ),
                               margin: EdgeInsets.only(
                                   top: 10, bottom: 10, left: 100, right: 100),
-                              child: PriceGraph(),
+                              //child: PriceGraph(),
+                              child: FutureBuilder(
+                                  future: getWeeklyPrice(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return (SfCartesianChart(
+                                          primaryXAxis: CategoryAxis(
+                                              isInversed:
+                                                  true), //-------------------------------
+                                          series: <
+                                              LineSeries<PriceWeekly, String>>[
+                                            LineSeries<PriceWeekly, String>(
+                                              dataSource: weeklyPrice,
+                                              xValueMapper:
+                                                  (PriceWeekly weekly, _) =>
+                                                      weekly.date,
+                                              yValueMapper:
+                                                  (PriceWeekly weekly, _) =>
+                                                      weekly.value,
+                                            )
+                                          ]));
+                                    } else {
+                                      return Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                  }),
+
+                              // SfCartesianChart(
+                              //   primaryXAxis:
+                              //       CategoryAxis(), //is it numeric by default?
+                              //   series: <ChartSeries>[
+                              //     LineSeries<PriceWeekly, String>(
+                              //       dataSource: weeklyPrice,
+                              //       xValueMapper: (PriceWeekly weekly, _) =>
+                              //           weekly.date,
+                              //       yValueMapper: (PriceWeekly weekly, _) =>
+                              //           weekly.value,
+                              //     )
+                              //   ],
+                              // ),
                             ),
                           ),
                         ],
@@ -441,5 +516,16 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
         ],
       ),
     );
+  }
+}
+
+class PriceWeekly {
+  PriceWeekly(this.date, this.value);
+  final String date;
+  final double value;
+
+  factory PriceWeekly.fromJson(Map<String, dynamic> parsedJson) {
+    return PriceWeekly(
+        parsedJson['date'].toString(), double.parse(parsedJson['value']));
   }
 }
