@@ -29,6 +29,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
   //--------------------------------------------------------------------------
   List<PriceWeekly> weeklyPrice = [];
   List<PriceWeekly> monthlyPrice = [];
+  List<PriceWeekly> yearlyPrice = [];
 
   Future<String> getWeeklyPrice(String type) async {
     String url = '';
@@ -36,6 +37,8 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     if (type == 'weekly') {
       url = ('https://econocast.pythonanywhere.com/dailyPrice');
     } else if (type == 'monthly') {
+      url = ('https://econocast.pythonanywhere.com/weeklyPrice');
+    } else if (type == 'yearly') {
       url = ('https://econocast.pythonanywhere.com/monthlyPrice');
     }
 
@@ -63,6 +66,14 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     }
   }
 
+  Future loadPriceYearly() async {
+    final String jsonString = await getWeeklyPrice('yearly');
+    final dynamic jasonResponse = jsonDecode(jsonString);
+    for (Map<String, dynamic> i in jasonResponse) {
+      yearlyPrice.add(PriceWeekly.fromJson(i));
+    }
+  }
+
   //-------------------------------------------------------------------------
 
   StreamController<DataModel> _streamController = StreamController();
@@ -81,6 +92,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     _getPrice();
     loadPriceWeekly();
     loadPriceMonthly();
+    loadPriceYearly();
   }
 
   // void _initValue1() {
@@ -166,6 +178,16 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
 
   void _initValue2() {
     _getPrediction();
+  }
+
+  getDataSource() {
+    if (_chart == 'Week') {
+      return weeklyPrice;
+    } else if (_chart == 'Month') {
+      return monthlyPrice;
+    } else {
+      return yearlyPrice;
+    }
   }
 
   //--------------------------Displaying the latest price-----------------------------------
@@ -452,56 +474,53 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                           ),
                           SizedBox(
                             child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: GraphBg,
-                              ),
-                              margin: EdgeInsets.only(
-                                  top: 10, bottom: 10, left: 100, right: 100),
-                              //child: PriceGraph(),
-                              child: FutureBuilder(
-                                  future: getWeeklyPrice('weekly'),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      return (SfCartesianChart(
-                                          primaryXAxis: CategoryAxis(
-                                              isInversed:
-                                                  true), //-------------------------------
-                                          series: <
-                                              LineSeries<PriceWeekly, String>>[
-                                            LineSeries<PriceWeekly, String>(
-                                              dataSource: _chart == 'Week'
-                                                  ? weeklyPrice
-                                                  : monthlyPrice,
-                                              xValueMapper:
-                                                  (PriceWeekly weekly, _) =>
-                                                      weekly.date,
-                                              yValueMapper:
-                                                  (PriceWeekly weekly, _) =>
-                                                      weekly.value,
-                                            )
-                                          ]));
-                                    } else {
-                                      return Center(
-                                        child: CircularProgressIndicator(),
-                                      );
-                                    }
-                                  }),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: GraphBg,
+                                ),
+                                margin: EdgeInsets.only(
+                                    top: 10, bottom: 10, left: 100, right: 100),
+                                //child: PriceGraph(),
+                                child:
+                                    // FutureBuilder(
+                                    //     future: getWeeklyPrice('weekly'),
+                                    //     builder: (context, snapshot) {
+                                    //       if (snapshot.hasData) {
+                                    //         return
+                                    (SfCartesianChart(
+                                        primaryXAxis: CategoryAxis(
+                                            isInversed:
+                                                true), //-------------------------------
+                                        series: <
+                                            LineSeries<PriceWeekly, String>>[
+                                      LineSeries<PriceWeekly, String>(
+                                        dataSource: getDataSource(),
+                                        xValueMapper: (PriceWeekly weekly, _) =>
+                                            weekly.date,
+                                        yValueMapper: (PriceWeekly weekly, _) =>
+                                            weekly.value,
+                                      )
+                                    ]))
+                                // } else {
+                                //   return Center(
+                                //     child: CircularProgressIndicator(),
+                                //   );
+                                // }
 
-                              // SfCartesianChart(
-                              //   primaryXAxis:
-                              //       CategoryAxis(), //is it numeric by default?
-                              //   series: <ChartSeries>[
-                              //     LineSeries<PriceWeekly, String>(
-                              //       dataSource: weeklyPrice,
-                              //       xValueMapper: (PriceWeekly weekly, _) =>
-                              //           weekly.date,
-                              //       yValueMapper: (PriceWeekly weekly, _) =>
-                              //           weekly.value,
-                              //     )
-                              //   ],
-                              // ),
-                            ),
+                                // SfCartesianChart(
+                                //   primaryXAxis:
+                                //       CategoryAxis(), //is it numeric by default?
+                                //   series: <ChartSeries>[
+                                //     LineSeries<PriceWeekly, String>(
+                                //       dataSource: weeklyPrice,
+                                //       xValueMapper: (PriceWeekly weekly, _) =>
+                                //           weekly.date,
+                                //       yValueMapper: (PriceWeekly weekly, _) =>
+                                //           weekly.value,
+                                //     )
+                                //   ],
+                                // ),
+                                ),
                           ),
                         ],
                       ),
