@@ -1,6 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
+//import 'dart:ffi';
 import 'dart:html';
+import 'package:flutter/services.dart' show rootBundle;
 
+import 'package:econo_cast/responsive_files/DataModel/DataModel.dart';
 import 'package:econo_cast/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -8,6 +12,9 @@ import 'package:switch_up/switch_up.dart';
 
 import '../constants/dropdown_button.dart';
 import 'main-page_graph/main_graph.dart';
+
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
@@ -19,8 +26,63 @@ class DesktopMainPage extends StatefulWidget {
 }
 
 class _DesktopMainPageState extends State<DesktopMainPage> {
+  //--------------------------------------------------------------------------
+  List<PriceWeekly> weeklyPrice = [];
+
+  Future<String> getWeeklyPrice() async {
+    String url = ('https://econocast.pythonanywhere.com/dailyPrice');
+    http.Response response = await http.get(Uri.parse(url));
+    return response.body;
+  }
+
+  Future loadPriceWeekly() async {
+    final String jsonString = await getWeeklyPrice();
+    final dynamic jasonResponse = jsonDecode(jsonString);
+    for (Map<String, dynamic> i in jasonResponse) {
+      weeklyPrice.add(PriceWeekly.fromJson(i));
+    }
+  }
+
+  //-------------------------------------------------------------------------
+
+  StreamController<DataModel> _streamController = StreamController();
+
+  @override
+  void dispose() {
+    _streamController.close();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    //_initValue1();
+    _initValue2();
+    _getPrice();
+    loadPriceWeekly();
+  }
+
+  // void _initValue1() {
+  //   Timer.periodic(Duration(seconds: 3), (Timer) {
+  //     getPrice();
+  //   });
+  // }
+
+  // Future<void> getPrice() async {
+  //   var url = Uri.parse('https://econocast.pythonanywhere.com/latestPrice');
+
+  //   final responsePrice = await http.get(url);
+  //   final databodyPrice = jsonDecode(responsePrice.body).first;
+
+  //   DataModel dataModel = new DataModel.fromJson(databodyPrice);
+
+  //   _streamController.sink.add(dataModel); //stores the data from the url
+  // }
+
+  //-------------------------------------------------------------------------
   //-------------------------------Predicting the price state----------------
   String _prediction = " ";
+  double _price = 0.00;
 
   Future<void> _getPrediction() async {
     final url = Uri.parse('https://suhasneramya.pythonanywhere.com/predict');
@@ -42,17 +104,49 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _getPrediction();
-
-    print(
-        '-----------------------------initialising page----------------------------------');
+  Future<void> _getPrice() async {
+    final url = Uri.parse('https://econocast.pythonanywhere.com/latestPrice');
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      print('-----------------------------print json price ${json['Price']}');
+      //final prediction = json['Price'][0];
+      setState(() {
+        _price = json['Price'];
+      });
+    } else {
+      throw Exception('Failed to get prediction');
+    }
   }
 
-  //--------------------------Displaying the latest price------------------------------------
+  // Future<String> getWeeklyPrice() async {
+  //   String url = ('https://econocast.pythonanywhere.com/weeklyPrice');
+  //   http.Response response = await http.get(Uri.parse(url));
+  //   return response.body;
+  // }
 
+  // Future loadWeeklyPrice() async {
+  //   final String jsonString = await getWeeklyPrice();
+  //   final dynamic jsonResponse = jsonDecode(jsonString);
+  //   for (Map<String, dynamic> i in jsonResponse) {
+  //     PriceWeekly.add(PriceWeekly.fromJson(i));
+  //   }
+  // }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _getPrediction();
+
+  //   print(
+  //       '-----------------------------initialising page----------------------------------');
+  // }
+
+  void _initValue2() {
+    _getPrediction();
+  }
+
+  //--------------------------Displaying the latest price-----------------------------------
   //----------------------------------------------------------------------------
 
   @override
@@ -124,6 +218,67 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                   flex: 2,
                   child: Row(
                     children: [
+                      // Expanded(
+
+                      //         return Container(
+                      //           padding: EdgeInsets.all(10.0),
+                      //           child: Card(
+                      //             color: mainPageTwoContainers,
+                      //             elevation: 4.0,
+                      //             shape: RoundedRectangleBorder(
+                      //               borderRadius: BorderRadius.circular(20),
+                      //             ),
+                      //             child: Column(
+                      //               //mainAxisAlignment: MainAxisAlignment.center,
+                      //               children: <Widget>[
+                      //                 ListTile(
+                      //                   title: Center(
+                      //                     child: Text(
+                      //                       'Declared Market Price In Dollers',
+                      //                       style: TextStyle(
+                      //                         color: Colors.white,
+                      //                       ),
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //                 //SizedBox(height: 5),
+                      //                 Row(
+                      //                   mainAxisAlignment:
+                      //                       MainAxisAlignment.center,
+                      //                   children: [
+                      //                     Column(
+                      //                       children: [
+                      //                         SizedBox(
+                      //                           height: 20,
+                      //                           child: DropdownButtonExample(),
+                      //                         ),
+                      //                       ],
+                      //                     ),
+                      //                     SizedBox(width: 5),
+                      //                     Column(
+                      //                       children: [
+                      //                         Container(
+                      //                           child: Text(
+
+                      //                             _price.toString(),
+                      //                             style: TextStyle(
+                      //                               fontSize: 30,
+                      //                               fontWeight: FontWeight.bold,
+                      //                               color: Colors.white,
+                      //                             ),
+                      //                           ),
+                      //                         ),
+                      //                       ],
+                      //                     ),
+                      //                   ],
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         );
+
+                      // ),
+
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.all(10.0),
@@ -163,7 +318,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                       children: [
                                         Container(
                                           child: Text(
-                                            '80.00',
+                                            _price.toString(),
                                             style: TextStyle(
                                               fontSize: 30,
                                               fontWeight: FontWeight.bold,
@@ -278,7 +433,47 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               ),
                               margin: EdgeInsets.only(
                                   top: 10, bottom: 10, left: 100, right: 100),
-                              child: PriceGraph(),
+                              //child: PriceGraph(),
+                              child: FutureBuilder(
+                                  future: getWeeklyPrice(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return (SfCartesianChart(
+                                          primaryXAxis: CategoryAxis(
+                                              isInversed:
+                                                  true), //-------------------------------
+                                          series: <
+                                              LineSeries<PriceWeekly, String>>[
+                                            LineSeries<PriceWeekly, String>(
+                                              dataSource: weeklyPrice,
+                                              xValueMapper:
+                                                  (PriceWeekly weekly, _) =>
+                                                      weekly.date,
+                                              yValueMapper:
+                                                  (PriceWeekly weekly, _) =>
+                                                      weekly.value,
+                                            )
+                                          ]));
+                                    } else {
+                                      return Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                  }),
+
+                              // SfCartesianChart(
+                              //   primaryXAxis:
+                              //       CategoryAxis(), //is it numeric by default?
+                              //   series: <ChartSeries>[
+                              //     LineSeries<PriceWeekly, String>(
+                              //       dataSource: weeklyPrice,
+                              //       xValueMapper: (PriceWeekly weekly, _) =>
+                              //           weekly.date,
+                              //       yValueMapper: (PriceWeekly weekly, _) =>
+                              //           weekly.value,
+                              //     )
+                              //   ],
+                              // ),
                             ),
                           ),
                         ],
@@ -321,5 +516,16 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
         ],
       ),
     );
+  }
+}
+
+class PriceWeekly {
+  PriceWeekly(this.date, this.value);
+  final String date;
+  final double value;
+
+  factory PriceWeekly.fromJson(Map<String, dynamic> parsedJson) {
+    return PriceWeekly(
+        parsedJson['date'].toString(), double.parse(parsedJson['value']));
   }
 }

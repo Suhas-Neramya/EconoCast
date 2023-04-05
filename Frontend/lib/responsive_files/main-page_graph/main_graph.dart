@@ -1,3 +1,4 @@
+import 'package:econo_cast/responsive_files/desktop_main_layout.dart';
 import 'package:switch_up/switch_up.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,9 @@ import 'package:flutter/material.dart';
 
 import '../../styles/colors.dart';
 
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class PriceGraph extends StatefulWidget {
   const PriceGraph({super.key});
 
@@ -15,6 +19,12 @@ class PriceGraph extends StatefulWidget {
 }
 
 class _PriceGraphState extends State<PriceGraph> {
+//--------------------------------
+
+//--------------------------------------------------------
+
+//------------------------------------------------------------
+
   List<Color> gradientColors = [
     darkBrownText,
     darkBrownText,
