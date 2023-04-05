@@ -3,8 +3,13 @@ import 'dart:convert';
 //import 'dart:ffi';
 
 import 'dart:html';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'desktop_login_layout.dart';
+
+import '../news_app_mobile/api_service.dart';
+import '../news_app_mobile/article_mobile.dart';
+import '../news_app_mobile/customListTile.dart';
+import '../news_app_mobile/desktop_news_page.dart';
+import '../news_app_mobile/news_page.dart';
 
 import '../constants/dropdown_button.dart';
 import 'desktop_login_layout.dart';
