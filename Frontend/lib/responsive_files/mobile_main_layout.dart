@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '../screens/about_page.dart';
+import '../news_app_mobile/news_page.dart';
+import 'package:econo_cast/responsive_files/mobile_login_layout.dart';
 
-import 'mobile_login_layout.dart';
 
 void main() => runApp(const MobileMainPage());
 
@@ -13,7 +15,6 @@ class MobileMainPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       home: MainPage(),
-
     );
   }
 }
@@ -50,8 +51,8 @@ class MainPage extends StatelessWidget {
             image: DecorationImage(
             image: AssetImage("assets/background.jpg"), // replace with your own image path
       fit: BoxFit.cover, // set the image to cover the entire container
-    ),
-    ),
+        ),
+        ),
         ),
         )
     );
@@ -85,42 +86,31 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.perm_device_information),
             title: const Text('About'),
-            onTap: ()  {Navigator.push(context, MaterialPageRoute<void>(
+            onTap: () { Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.amber,
-                    title: const Text('Econ'),
-                    foregroundColor: Colors.brown,
-                  ),
-                  body: Container(
-
-                  ),
-                );
+                return AboutPage();
               },
-            ));
+            ),
+            );
             },
           ),
+
+          //News icon of the Navigation bar
           ListTile(
             leading: const Icon(Icons.newspaper_rounded),
             title: const Text('News'),
-            onTap: () {Navigator.push(context, MaterialPageRoute<void>(
+            onTap: () { Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) {
-                return Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.amber,
-                    title: const Text('Econo'),
-                    foregroundColor: Colors.brown,
-                  ),
-                  body: Container(
-
-                  ),
-                );
+                return NewsPage();
               },
-            ));
+            ),
+            );
             },
           ),
 
+
+
+          //Notification icon of the Navigation bar
           ListTile(
             leading: const Icon(Icons.notification_add),
             title: const Text('Notification'),
