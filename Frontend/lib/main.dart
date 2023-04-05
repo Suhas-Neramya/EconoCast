@@ -3,7 +3,7 @@ import 'package:econo_cast/responsive_files/mobile_login_layout.dart';
 import 'package:econo_cast/responsive_files/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'firebase_options_mobile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
