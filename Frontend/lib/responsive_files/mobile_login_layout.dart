@@ -1,5 +1,7 @@
+import 'package:econo_cast/controller/login_controller.dart';
 import 'package:econo_cast/responsive_files/mobile_main_layout.dart';
 import 'package:flutter/material.dart';
+
 import '../constants/constants.dart';
 import '../styles/colors.dart';
 
@@ -63,12 +65,12 @@ class MobileLoginLayout extends StatelessWidget {
                     children: [
                       /*----------------------Text Heading----------------------*/
                       SizedBox(
-                        height: 30.0,
+                        height: 70.0,
                       ),
                       Text(
                         'Sign In',
                         style: TextStyle(
-                          fontSize: 24.0,
+                          fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                           color: signInTextInContainer,
                         ),
@@ -82,17 +84,19 @@ class MobileLoginLayout extends StatelessWidget {
                       LoginButton(
                           iconPath: 'assets/google-icon.png',
                           textInButtons: Text('Login with Google'),
-                          onPressed: () {}),
+                          onPressed: () {
+                            LoginController().googleSignWith(context);
+                          }),
 
                       SizedBox(height: 20),
 
                       //---------------------2st button-----------------------
-                      LoginButton(
-                          iconPath: 'assets/fb-icon.png',
-                          textInButtons: Text('Login with Facebook'),
-                          onPressed: () {}),
-
-                      SizedBox(height: 20),
+                      // LoginButton(
+                      //     iconPath: 'assets/fb-icon.png',
+                      //     textInButtons: Text('Login with Facebook'),
+                      //     onPressed: () {}),
+                      //
+                      // SizedBox(height: 20),
 
                       //---------------------3rd button-----------------------
                       LoginButton(

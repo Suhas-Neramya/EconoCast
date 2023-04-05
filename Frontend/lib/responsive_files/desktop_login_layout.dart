@@ -55,12 +55,12 @@ class DesktopLoginLayout extends StatelessWidget {
                     children: [
                       /*----------------------Text Heading----------------------*/
                       SizedBox(
-                        height: 60.0,
+                        height: 100.0,
                       ),
                       Text(
                         'Sign In',
                         style: TextStyle(
-                          fontSize: 24.0,
+                          fontSize: 37.0,
                           fontWeight: FontWeight.bold,
                           color: signInTextInContainer,
                         ),
@@ -81,12 +81,12 @@ class DesktopLoginLayout extends StatelessWidget {
                       SizedBox(height: 20),
 
                       //---------------------2st button-----------------------
-                      LoginButton(
-                          iconPath: 'assets/fb-icon.png',
-                          textInButtons: Text('Login with Facebook'),
-                          onPressed: () {}),
-
-                      SizedBox(height: 20),
+                      // LoginButton(
+                      //     iconPath: 'assets/fb-icon.png',
+                      //     textInButtons: Text('Login with Facebook'),
+                      //     onPressed: () {}),
+                      //
+                      // SizedBox(height: 20),
 
                       //---------------------3rd button-----------------------
                       LoginButton(
