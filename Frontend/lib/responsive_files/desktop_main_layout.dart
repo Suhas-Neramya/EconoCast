@@ -1,18 +1,69 @@
-import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
+<<<<<<< frontend-ui-irushi
+=======
+import 'dart:html';
 
-import 'package:econo_cast/responsive_files/DataModel/DataModel.dart';
 import 'package:econo_cast/styles/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:switch_up/switch_up.dart';
 
 import '../constants/dropdown_button.dart';
+import 'desktop_login_layout.dart';
+import 'main-page_graph/main_graph.dart';
+
+import 'package:econo_cast/styles/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
+import 'package:switch_up/switch_up.dart';
+
+import '../constants/dropdown_button.dart';
+import 'desktop_login_layout.dart';
+import 'main-page_graph/main_graph.dart';
+
+import 'package:econo_cast/styles/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
+import 'package:switch_up/switch_up.dart';
+
+import '../constants/dropdown_button.dart';
+import 'desktop_login_layout.dart';
+import 'main-page_graph/main_graph.dart';
+
+
+>>>>>>> frontend-ui-nisalya
+import 'package:flutter/services.dart' show rootBundle;
+
+import 'package:econo_cast/responsive_files/DataModel/DataModel.dart';
+import 'package:econo_cast/styles/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
+import 'package:switch_up/switch_up.dart';
+
+import '../constants/dropdown_button.dart';
+import 'desktop_login_layout.dart';
+import '../news_app_mobile/api_service.dart';
+import '../news_app_mobile/article_mobile.dart';
+import '../news_app_mobile/customListTile.dart';
+import '../news_app_mobile/desktop_news_page.dart';
+import '../news_app_mobile/news_page.dart';
+
 import 'main-page_graph/main_graph.dart';
 
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+
+
+
+
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
@@ -92,23 +143,6 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     loadPriceMonthly();
     loadPriceYearly();
   }
-
-  // void _initValue1() {
-  //   Timer.periodic(Duration(seconds: 3), (Timer) {
-  //     getPrice();
-  //   });
-  // }
-
-  // Future<void> getPrice() async {
-  //   var url = Uri.parse('https://econocast.pythonanywhere.com/latestPrice');
-
-  //   final responsePrice = await http.get(url);
-  //   final databodyPrice = jsonDecode(responsePrice.body).first;
-
-  //   DataModel dataModel = new DataModel.fromJson(databodyPrice);
-
-  //   _streamController.sink.add(dataModel); //stores the data from the url
-  // }
 
   //-------------------------------------------------------------------------
   //-------------------------------Predicting the price state----------------
@@ -237,8 +271,23 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                 iconSize: 30,
                 onPressed: () {},
                 icon: Icon(Icons.person_rounded)),
+            IconButton(
+              color: mainPageIcons,
+              iconSize: 30,
+              onPressed: () async {
+                await GoogleSignIn().signOut();
+                FirebaseAuth.instance.signOut();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const DesktopLoginLayout();
+                  },
+                ));
+              },
+              icon: Icon(Icons.logout),
+            ),
           ],
         ),
+        // automaticallyImplyLeading: false,
       ),
 
       /*
@@ -434,7 +483,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: 15,
+                            height: 25,
                           ),
                           //---------------------Heading---------------
                           Text(
@@ -445,7 +494,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                             ),
                           ),
                           SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
                           //-----------------------Switch---------------
                           SizedBox(
@@ -477,7 +526,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                   color: GraphBg,
                                 ),
                                 margin: EdgeInsets.only(
-                                    top: 10, bottom: 10, left: 100, right: 100),
+                                    top: 20, bottom: 10, left: 100, right: 100),
                                 //child: PriceGraph(),
                                 child:
                                     // FutureBuilder(
@@ -498,27 +547,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                         yValueMapper: (PriceWeekly weekly, _) =>
                                             weekly.value,
                                       )
-                                    ]))
-                                // } else {
-                                //   return Center(
-                                //     child: CircularProgressIndicator(),
-                                //   );
-                                // }
-
-                                // SfCartesianChart(
-                                //   primaryXAxis:
-                                //       CategoryAxis(), //is it numeric by default?
-                                //   series: <ChartSeries>[
-                                //     LineSeries<PriceWeekly, String>(
-                                //       dataSource: weeklyPrice,
-                                //       xValueMapper: (PriceWeekly weekly, _) =>
-                                //           weekly.date,
-                                //       yValueMapper: (PriceWeekly weekly, _) =>
-                                //           weekly.value,
-                                //     )
-                                //   ],
-                                // ),
-                                ),
+                                    ]))),
                           ),
                         ],
                       ),
@@ -535,6 +564,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
             flex: 2,
             child: Column(
               children: [
+                // SingleChildScrollView(child: DesktopNewsPage),
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.all(16.0),
@@ -547,7 +577,25 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                         ),
                         child: Column(
                           children: <Widget>[
-                            ListTile(),
+                            AppBar(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              automaticallyImplyLeading: false,
+                              backgroundColor: GraphBg,
+                              title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('Crude Oil News',
+                                        style: TextStyle(
+                                            color: darkBrownText,
+                                            fontWeight: FontWeight.bold))
+                                  ]),
+                            ),
+                            Container(
+                              height: 470,
+                              child: DesktopNewsPage(),
+                            )
                           ],
                         ),
                       ),
@@ -571,5 +619,28 @@ class PriceWeekly {
   factory PriceWeekly.fromJson(Map<String, dynamic> parsedJson) {
     return PriceWeekly(
         parsedJson['date'].toString(), double.parse(parsedJson['value']));
+  }
+}
+
+//--------------------------news container eke code ekak- still doing--
+class CategoryTile extends StatelessWidget {
+  final imageUrl, categoryName;
+  CategoryTile({this.imageUrl, this.categoryName});
+
+  //const CategoryTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Stack(
+        children: [
+          Image.network(
+            imageUrl,
+            width: 120,
+            height: 60,
+          )
+        ],
+      ),
+    );
   }
 }
