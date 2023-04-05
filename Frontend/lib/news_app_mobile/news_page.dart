@@ -5,9 +5,11 @@ import 'api_service.dart';
 
 
 
-void MobileMainPage() => runApp( MobileNewsPage());
+void MobileMainPage() => runApp( const MobileNewsPage());
 
 class MobileNewsPage extends StatelessWidget {
+  const MobileNewsPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,10 @@ class _NewsPage extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text("News App", style: TextStyle(color: Colors.black)),
-            backgroundColor: Colors.white),
+          //----News page appbar---
+            title:  Text('Crude Oil Price Forecast',
+              style: TextStyle(color: Colors.brown),),
+            backgroundColor: Color(0xFFE1D8B3)),
         body: FutureBuilder(
           future: client.getArticle(),
           builder:
@@ -42,6 +46,7 @@ class _NewsPage extends State<NewsPage> {
                   itemBuilder: (context, index) =>
                       customListTile(articles[index], context));
             }
+            //----if crude oil news is not displayed ,this will appear--
             return Center(
               child: CircularProgressIndicator(),
             );

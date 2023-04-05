@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'article_mobile.dart';
-//import 'package:news_api_app/model/article_model.dart';
 
 
 class ArticlePage extends StatelessWidget {
@@ -9,11 +7,16 @@ class ArticlePage extends StatelessWidget {
   ArticlePage({required this.article});
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(article.title),
+
+        title: Text(article.title, style: TextStyle(color: Colors.brown),),
+          backgroundColor: Color(0xFFE1D8B3),
       ),
+
       body: Padding(
+
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -34,7 +37,8 @@ class ArticlePage extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage('https://source.unsplash.com/weekly?coding'), fit: BoxFit.cover),
+                    image: NetworkImage('https://source.unsplash.com/weekly?coding'),
+                    fit: BoxFit.cover),
                 borderRadius: BorderRadius.circular(12.0),
               ),
             ),
@@ -44,7 +48,7 @@ class ArticlePage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(6.0),
               decoration: BoxDecoration(
-                color: Colors.red,
+                color: Color.fromRGBO(121, 114, 86, 1),
                 borderRadius: BorderRadius.circular(30.0),
               ),
               child: Text(
