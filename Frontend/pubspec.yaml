@@ -68,6 +68,7 @@ flutter:
     
   assets:
     - assets/logo.png
+    - assets/logo-nav.jpg
     - assets/background.jpg
     - assets/google-icon.png
     - assets/fb-icon.png
