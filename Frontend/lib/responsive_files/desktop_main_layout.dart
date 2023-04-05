@@ -1,8 +1,8 @@
 import 'dart:convert';
+<<<<<<< frontend-ui-irushi
+=======
 import 'dart:html';
 
-import 'dart:html';
-
 import 'package:econo_cast/styles/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +37,7 @@ import 'desktop_login_layout.dart';
 import 'main-page_graph/main_graph.dart';
 
 
+>>>>>>> frontend-ui-nisalya
 import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:econo_cast/responsive_files/DataModel/DataModel.dart';
@@ -59,6 +60,10 @@ import 'main-page_graph/main_graph.dart';
 
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+
+
+
+
 
 const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 
