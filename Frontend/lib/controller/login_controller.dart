@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../responsive_files/mobile_mail_layout.dart';
+import '../responsive_files/mobile_main_layout.dart';
 
 class LoginController extends StatelessWidget {
   final GoogleSignIn googleSignIn = GoogleSignIn();
