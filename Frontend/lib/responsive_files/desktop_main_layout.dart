@@ -242,8 +242,23 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                 iconSize: 30,
                 onPressed: () {},
                 icon: Icon(Icons.person_rounded)),
+            IconButton(
+              color: mainPageIcons,
+              iconSize: 30,
+              onPressed: () async {
+                await GoogleSignIn().signOut();
+                FirebaseAuth.instance.signOut();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const DesktopLoginLayout();
+                  },
+                ));
+              },
+              icon: Icon(Icons.logout),
+            ),
           ],
         ),
+        // automaticallyImplyLeading: false,
       ),
 
       /*
