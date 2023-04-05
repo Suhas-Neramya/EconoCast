@@ -1,39 +1,40 @@
 import 'package:flutter/material.dart';
 import 'article_mobile.dart';
+
 import 'customListTile.dart';
 import 'api_service.dart';
 
-void MobileMainPage() => runApp(const MobileNewsPage());
+// void MobileMainPage() => runApp(const MobileDesktopNewsPage());
 
-class MobileNewsPage extends StatelessWidget {
-  const MobileNewsPage({super.key});
+// class MobileDesktopNewsPage extends StatelessWidget {
+//   const MobileDesktopNewsPage({super.key});
 
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: DesktopNewsPage(),
+//     );
+//   }
+// }
+
+class DesktopNewsPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: NewsPage(),
-    );
-  }
+  _DesktopNewsPage createState() => _DesktopNewsPage();
 }
 
-class NewsPage extends StatefulWidget {
-  @override
-  _NewsPage createState() => _NewsPage();
-}
-
-class _NewsPage extends State<NewsPage> {
+class _DesktopNewsPage extends State<DesktopNewsPage> {
   ApiService client = ApiService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          //----News page appbar---
-          title: Text(
-            'Crude Oil Price Forecast',
-            style: TextStyle(color: Colors.brown),
-          ),
-          backgroundColor: Color(0xFFE1D8B3)),
+      // appBar: AppBar(
+      //     //----News page appbar---
+      //     title: Text(
+      //       'Crude Oil Price Forecast',
+      //       style: TextStyle(color: Colors.brown),
+      //     ),
+      //     backgroundColor: Color(0xFFE1D8B3)),
       body: FutureBuilder(
         future: client.getArticle(),
         builder: (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {

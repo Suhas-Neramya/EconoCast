@@ -11,6 +11,11 @@ import 'package:http/http.dart' as http;
 import 'package:switch_up/switch_up.dart';
 
 import '../constants/dropdown_button.dart';
+import '../news_app_mobile/api_service.dart';
+import '../news_app_mobile/article_mobile.dart';
+import '../news_app_mobile/customListTile.dart';
+import '../news_app_mobile/desktop_news_page.dart';
+import '../news_app_mobile/news_page.dart';
 import 'main-page_graph/main_graph.dart';
 
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -94,23 +99,6 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     loadPriceMonthly();
     loadPriceYearly();
   }
-
-  // void _initValue1() {
-  //   Timer.periodic(Duration(seconds: 3), (Timer) {
-  //     getPrice();
-  //   });
-  // }
-
-  // Future<void> getPrice() async {
-  //   var url = Uri.parse('https://econocast.pythonanywhere.com/latestPrice');
-
-  //   final responsePrice = await http.get(url);
-  //   final databodyPrice = jsonDecode(responsePrice.body).first;
-
-  //   DataModel dataModel = new DataModel.fromJson(databodyPrice);
-
-  //   _streamController.sink.add(dataModel); //stores the data from the url
-  // }
 
   //-------------------------------------------------------------------------
   //-------------------------------Predicting the price state----------------
@@ -500,27 +488,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                         yValueMapper: (PriceWeekly weekly, _) =>
                                             weekly.value,
                                       )
-                                    ]))
-                                // } else {
-                                //   return Center(
-                                //     child: CircularProgressIndicator(),
-                                //   );
-                                // }
-
-                                // SfCartesianChart(
-                                //   primaryXAxis:
-                                //       CategoryAxis(), //is it numeric by default?
-                                //   series: <ChartSeries>[
-                                //     LineSeries<PriceWeekly, String>(
-                                //       dataSource: weeklyPrice,
-                                //       xValueMapper: (PriceWeekly weekly, _) =>
-                                //           weekly.date,
-                                //       yValueMapper: (PriceWeekly weekly, _) =>
-                                //           weekly.value,
-                                //     )
-                                //   ],
-                                // ),
-                                ),
+                                    ]))),
                           ),
                         ],
                       ),
@@ -537,6 +505,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
             flex: 2,
             child: Column(
               children: [
+                // SingleChildScrollView(child: DesktopNewsPage),
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.all(16.0),
@@ -549,7 +518,20 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                         ),
                         child: Column(
                           children: <Widget>[
-                            ListTile(),
+                            AppBar(
+                              automaticallyImplyLeading: false,
+                              backgroundColor: mainPageIcons,
+                              title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('News',
+                                        style: TextStyle(color: darkBrownText))
+                                  ]),
+                            ),
+                            Container(
+                              height: 450,
+                              child: DesktopNewsPage(),
+                            )
                           ],
                         ),
                       ),
@@ -573,5 +555,28 @@ class PriceWeekly {
   factory PriceWeekly.fromJson(Map<String, dynamic> parsedJson) {
     return PriceWeekly(
         parsedJson['date'].toString(), double.parse(parsedJson['value']));
+  }
+}
+
+//--------------------------news container eke code ekak- still doing--
+class CategoryTile extends StatelessWidget {
+  final imageUrl, categoryName;
+  CategoryTile({this.imageUrl, this.categoryName});
+
+  //const CategoryTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Stack(
+        children: [
+          Image.network(
+            imageUrl,
+            width: 120,
+            height: 60,
+          )
+        ],
+      ),
+    );
   }
 }
