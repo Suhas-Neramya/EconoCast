@@ -85,7 +85,6 @@ class DesktopLoginLayout extends StatelessWidget {
                       //     iconPath: 'assets/fb-icon.png',
                       //     textInButtons: Text('Login with Facebook'),
                       //     onPressed: () {}),
-
                       // SizedBox(height: 20),
 
                       //---------------------3rd button-----------------------
