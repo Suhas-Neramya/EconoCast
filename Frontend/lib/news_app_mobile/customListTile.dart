@@ -54,13 +54,13 @@ Widget customListTile(Article article, BuildContext context) {
           Container(
             padding: EdgeInsets.all(6.0),
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: Color(0xFFE1D8B3),
               borderRadius: BorderRadius.circular(30.0),
             ),
             child: Text(
               article.source.name,
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.brown,
               ),
             ),
           ),
