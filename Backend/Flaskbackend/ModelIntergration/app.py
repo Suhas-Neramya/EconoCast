@@ -48,6 +48,23 @@ def predict():
     return jsonify({'prediction': prediction_list})
 
 
+@app.route('/latestNews', methods=['GET', 'POST'])
+def news():
+    url = 'https://newsapi.org/v2/everything'
+    params = {
+        'q': 'crude oil',
+        'sortBy': 'publishedAt',
+        'apiKey': 'f099ad81f7434501bbb8e1441347c466'  # Replace with your NewsAPI key
+    }
+
+    # Make API request and parse response
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    # Retrieve the news text from the API response
+    news_text = data['articles'][0]['title']
+
+    return jsonify({'News': news_text})
 
 
 
