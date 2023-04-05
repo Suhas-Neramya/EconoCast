@@ -30,7 +30,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
   List<PriceWeekly> weeklyPrice = [];
 
   Future<String> getWeeklyPrice() async {
-    String url = ('https://econocast.pythonanywhere.com/weeklyPrice');
+    String url = ('https://econocast.pythonanywhere.com/dailyPrice');
     http.Response response = await http.get(Uri.parse(url));
     return response.body;
   }
