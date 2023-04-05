@@ -424,7 +424,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: 15,
+                            height: 25,
                           ),
                           //---------------------Heading---------------
                           Text(
@@ -435,7 +435,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                             ),
                           ),
                           SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
                           //-----------------------Switch---------------
                           SizedBox(
@@ -467,7 +467,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                   color: GraphBg,
                                 ),
                                 margin: EdgeInsets.only(
-                                    top: 10, bottom: 10, left: 100, right: 100),
+                                    top: 20, bottom: 10, left: 100, right: 100),
                                 //child: PriceGraph(),
                                 child:
                                     // FutureBuilder(
@@ -519,17 +519,22 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                         child: Column(
                           children: <Widget>[
                             AppBar(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
                               automaticallyImplyLeading: false,
-                              backgroundColor: mainPageIcons,
+                              backgroundColor: GraphBg,
                               title: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('News',
-                                        style: TextStyle(color: darkBrownText))
+                                    Text('Crude Oil News',
+                                        style: TextStyle(
+                                            color: darkBrownText,
+                                            fontWeight: FontWeight.bold))
                                   ]),
                             ),
                             Container(
-                              height: 450,
+                              height: 470,
                               child: DesktopNewsPage(),
                             )
                           ],
