@@ -1,19 +1,17 @@
-import 'dart:async';
 import 'dart:convert';
-//import 'dart:ffi';
-
 import 'dart:html';
-import 'desktop_login_layout.dart';
 
-import '../news_app_mobile/api_service.dart';
-import '../news_app_mobile/article_mobile.dart';
-import '../news_app_mobile/customListTile.dart';
-import '../news_app_mobile/desktop_news_page.dart';
-import '../news_app_mobile/news_page.dart';
+import 'package:econo_cast/styles/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
+import 'package:switch_up/switch_up.dart';
 
 import '../constants/dropdown_button.dart';
 import 'desktop_login_layout.dart';
 import 'main-page_graph/main_graph.dart';
+
 
 import 'package:flutter/services.dart' show rootBundle;
 
