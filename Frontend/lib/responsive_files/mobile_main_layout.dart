@@ -387,7 +387,7 @@ class _MobileMainPage extends State<MobileMainPage> {
                                                     LineSeries<PriceWeekly,
                                                         String>>[
                                               LineSeries<PriceWeekly, String>(
-                                                dataSource: weeklyPrice,
+                                                dataSource: getDataSource(),
                                                 xValueMapper:
                                                     (PriceWeekly weekly, _) =>
                                                         weekly.date,
@@ -646,7 +646,7 @@ class _MobileMainPage extends State<MobileMainPage> {
                                                     LineSeries<PriceWeekly,
                                                         String>>[
                                               LineSeries<PriceWeekly, String>(
-                                                dataSource: weeklyPrice,
+                                                dataSource: getDataSource(),
                                                 xValueMapper:
                                                     (PriceWeekly weekly, _) =>
                                                         weekly.date,
@@ -749,42 +749,42 @@ class NavDrawer extends StatefulWidget {
           ),
 
           //Notification icon of the Navigation bar
-          ListTile(
-            leading: const Icon(Icons.notification_add),
-            title: const Text('Notification'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute<void>(
-                builder: (BuildContext context) {
-                  return Scaffold(
-                    appBar: AppBar(
-                      backgroundColor: Colors.amber,
-                      title: const Text('Econo'),
-                      foregroundColor: Colors.brown,
-                    ),
-                    body: Container(),
-                  );
-                },
-              ));
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.history_outlined),
-            title: const Text('History'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute<void>(
-                builder: (BuildContext context) {
-                  return Scaffold(
-                    appBar: AppBar(
-                      backgroundColor: Colors.amber,
-                      title: const Text('Econo'),
-                      foregroundColor: Colors.brown,
-                    ),
-                    body: Container(),
-                  );
-                },
-              ));
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.notification_add),
+          //   title: const Text('Notification'),
+          //   onTap: () {
+          //     Navigator.push(context, MaterialPageRoute<void>(
+          //       builder: (BuildContext context) {
+          //         return Scaffold(
+          //           appBar: AppBar(
+          //             backgroundColor: Colors.amber,
+          //             title: const Text('Econo'),
+          //             foregroundColor: Colors.brown,
+          //           ),
+          //           body: Container(),
+          //         );
+          //       },
+          //     ));
+          //   },
+          // ),
+          // ListTile(
+          //   leading: const Icon(Icons.history_outlined),
+          //   title: const Text('History'),
+          //   onTap: () {
+          //     Navigator.push(context, MaterialPageRoute<void>(
+          //       builder: (BuildContext context) {
+          //         return Scaffold(
+          //           appBar: AppBar(
+          //             backgroundColor: Colors.amber,
+          //             title: const Text('Econo'),
+          //             foregroundColor: Colors.brown,
+          //           ),
+          //           body: Container(),
+          //         );
+          //       },
+          //     ));
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Logout'),

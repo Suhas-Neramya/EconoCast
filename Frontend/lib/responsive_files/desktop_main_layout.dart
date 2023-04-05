@@ -214,16 +214,16 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
             Spacer(),
 
             //-----------------------------------icons in the app bar--------------------------------------
-            IconButton(
-                color: mainPageIcons,
-                iconSize: 30,
-                onPressed: () {},
-                icon: Icon(Icons.history)),
-            IconButton(
-                color: mainPageIcons,
-                iconSize: 30,
-                onPressed: () {},
-                icon: Icon(Icons.notification_add_outlined)),
+            // IconButton(
+            //     color: mainPageIcons,
+            //     iconSize: 30,
+            //     onPressed: () {},
+            //     icon: Icon(Icons.history)),
+            // IconButton(
+            //     color: mainPageIcons,
+            //     iconSize: 30,
+            //     onPressed: () {},
+            //     icon: Icon(Icons.notification_add_outlined)),
             IconButton(
                 color: mainPageIcons,
                 iconSize: 30,
