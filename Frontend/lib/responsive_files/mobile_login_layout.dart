@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../constants/constants.dart';
 import '../styles/colors.dart';
 
-
 class MobileLoginLayout extends StatelessWidget {
   const MobileLoginLayout({super.key});
 
@@ -63,12 +62,12 @@ class MobileLoginLayout extends StatelessWidget {
                     children: [
                       /*----------------------Text Heading----------------------*/
                       SizedBox(
-                        height: 30.0,
+                        height: 70.0,
                       ),
                       Text(
                         'Sign In',
                         style: TextStyle(
-                          fontSize: 24.0,
+                          fontSize: 30.0,
                           fontWeight: FontWeight.bold,
                           color: signInTextInContainer,
                         ),
@@ -87,12 +86,12 @@ class MobileLoginLayout extends StatelessWidget {
                       SizedBox(height: 20),
 
                       //---------------------2st button-----------------------
-                      LoginButton(
-                          iconPath: 'assets/fb-icon.png',
-                          textInButtons: Text('Login with Facebook'),
-                          onPressed: () {}),
+                      // LoginButton(
+                      //     iconPath: 'assets/fb-icon.png',
+                      //     textInButtons: Text('Login with Facebook'),
+                      //     onPressed: () {}),
 
-                      SizedBox(height: 20),
+                      // SizedBox(height: 20),
 
                       //---------------------3rd button-----------------------
                       LoginButton(
