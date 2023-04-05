@@ -481,7 +481,7 @@ class _MobileMainPage extends State<MobileMainPage> {
                                           ListTile(
                                             title: Center(
                                               child: Text(
-                                                'Declared Market Price In Dollers',
+                                                'Declared Market Price In Dollars',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                 ),

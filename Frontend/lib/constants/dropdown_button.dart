@@ -22,13 +22,16 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
       margin: EdgeInsets.only(
         left: 10,
       ),
-      color: Colors.white,
+      color: mainPageTwoContainers,
       width: 80,
       child: DropdownButton<String>(
         value: dropdownValue,
-        icon: const Icon(Icons.arrow_downward),
+        icon: const Icon(
+          Icons.arrow_downward,
+          color: Color.fromARGB(0, 255, 255, 255),
+        ),
         elevation: 16,
-        style: const TextStyle(color: mainPageTwoContainers),
+        style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
         underline: Container(
           //width: 100,
           height: 1,
