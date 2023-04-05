@@ -137,7 +137,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     var _price;
-    String _predictionm;
+    String _prediction;
     return Scaffold(
         drawer: const NavDrawer(),
         appBar: AppBar(
@@ -175,7 +175,7 @@ class MainPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    //mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       ListTile(
                         title: Center(
@@ -244,13 +244,13 @@ class MainPage extends StatelessWidget {
                             ),
                           ),
                           subtitle: Center(
-                              child: Text(
-                                _prediction,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                ),
-                              ),
+                              // child: Text(
+                              //   _prediction,
+                              //   style: TextStyle(
+                              //     color: Colors.white,
+                              //     fontSize: 30,
+                              //   ),
+                              // ),
                               ),
                         ),
                       ),
