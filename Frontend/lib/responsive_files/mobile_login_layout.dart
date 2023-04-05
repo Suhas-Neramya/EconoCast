@@ -84,7 +84,9 @@ class MobileLoginLayout extends StatelessWidget {
                       LoginButton(
                           iconPath: 'assets/google-icon.png',
                           textInButtons: Text('Login with Google'),
-                          onPressed: () {}),
+                          onPressed: () {
+                            LoginController().googleSignWith(context);
+                          }),
 
                       SizedBox(height: 20),
 
