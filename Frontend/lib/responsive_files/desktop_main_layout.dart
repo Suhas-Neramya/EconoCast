@@ -28,18 +28,38 @@ class DesktopMainPage extends StatefulWidget {
 class _DesktopMainPageState extends State<DesktopMainPage> {
   //--------------------------------------------------------------------------
   List<PriceWeekly> weeklyPrice = [];
+  List<PriceWeekly> monthlyPrice = [];
 
-  Future<String> getWeeklyPrice() async {
-    String url = ('https://econocast.pythonanywhere.com/dailyPrice');
+  Future<String> getWeeklyPrice(String type) async {
+    String url = '';
+
+    if (type == 'weekly') {
+      url = ('https://econocast.pythonanywhere.com/dailyPrice');
+    } else if (type == 'monthly') {
+      url = ('https://econocast.pythonanywhere.com/monthlyPrice');
+    }
+
     http.Response response = await http.get(Uri.parse(url));
-    return response.body;
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Failed to get Daily price');
+    }
   }
 
   Future loadPriceWeekly() async {
-    final String jsonString = await getWeeklyPrice();
+    final String jsonString = await getWeeklyPrice('weekly');
     final dynamic jasonResponse = jsonDecode(jsonString);
     for (Map<String, dynamic> i in jasonResponse) {
       weeklyPrice.add(PriceWeekly.fromJson(i));
+    }
+  }
+
+  Future loadPriceMonthly() async {
+    final String jsonString = await getWeeklyPrice('monthly');
+    final dynamic jasonResponse = jsonDecode(jsonString);
+    for (Map<String, dynamic> i in jasonResponse) {
+      monthlyPrice.add(PriceWeekly.fromJson(i));
     }
   }
 
@@ -60,6 +80,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
     _initValue2();
     _getPrice();
     loadPriceWeekly();
+    loadPriceMonthly();
   }
 
   // void _initValue1() {
@@ -83,6 +104,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
   //-------------------------------Predicting the price state----------------
   String _prediction = " ";
   double _price = 0.00;
+  String _chart = 'Week';
 
   Future<void> _getPrediction() async {
     final url = Uri.parse('https://suhasneramya.pythonanywhere.com/predict');
@@ -421,6 +443,9 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                               ],
                               onChanged: (String value) {
                                 print(value);
+                                setState(() {
+                                  _chart = value;
+                                });
                               },
                               value: 'Settings',
                             ),
@@ -435,7 +460,7 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                   top: 10, bottom: 10, left: 100, right: 100),
                               //child: PriceGraph(),
                               child: FutureBuilder(
-                                  future: getWeeklyPrice(),
+                                  future: getWeeklyPrice('weekly'),
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
                                       return (SfCartesianChart(
@@ -445,7 +470,9 @@ class _DesktopMainPageState extends State<DesktopMainPage> {
                                           series: <
                                               LineSeries<PriceWeekly, String>>[
                                             LineSeries<PriceWeekly, String>(
-                                              dataSource: weeklyPrice,
+                                              dataSource: _chart == 'Week'
+                                                  ? weeklyPrice
+                                                  : monthlyPrice,
                                               xValueMapper:
                                                   (PriceWeekly weekly, _) =>
                                                       weekly.date,
