@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: ResponsiveLayout(
             mobileLoginScaffold: MobileLoginLayout(),
-            desktopLoginScaffold: DesktopLoginLayout()));
+            desktopLoginScaffold: DesktopLoginLayout()
+        )
+    );
   }
 }

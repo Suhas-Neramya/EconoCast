@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../screens/about_page.dart';
-import '../screens/news_page.dart';
-import 'mobile_login_layout.dart';
+import '../news_app_mobile/news_page.dart';
+import 'package:econo_cast/responsive_files/mobile_login_layout.dart';
+
 
 void main() => runApp(const MobileMainPage());
 
@@ -14,7 +15,6 @@ class MobileMainPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       home: MainPage(),
-
     );
   }
 }
