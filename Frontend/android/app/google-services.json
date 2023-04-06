@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "714937278203",
+    "project_id": "econocast-72fdc",
+    "storage_bucket": "econocast-72fdc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:714937278203:android:97300eb6aa09a923475a5e",
+        "android_client_info": {
+          "package_name": "com.example.econo_cast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "714937278203-ngh2pgpcvdooea4iclpv5i6oaquv3l6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJQ0lFRBQXqIB-08T35hbo6c5HthFP5BQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "714937278203-ngh2pgpcvdooea4iclpv5i6oaquv3l6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
